@@ -389,7 +389,9 @@ export default function App() {
                 <h3 style={{ fontFamily: serif, fontSize: 29, fontWeight: 600, color: C.gold, margin: "0 0 10px" }}>AI Model Generation</h3>
                 <p style={{ ...body, fontSize: 15, lineHeight: 1.65, margin: 0 }}>Generate AI models with your jewellery.</p>
               </div>
-              <video src="/AI Model generation fast.mp4" autoPlay loop muted playsInline style={{ width: "100%", display: "block", maxHeight: 400, objectFit: "cover" }} />
+              <div style={{ width: "100%", height: 400, overflow: "hidden", position: "relative" }}>
+                <video src="/AI Model generation fast.mp4" autoPlay loop muted playsInline style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%) scale(1.75)", minWidth: "100%", minHeight: "100%", display: "block" }} />
+              </div>
             </div>
           </Reveal>
         </div>
