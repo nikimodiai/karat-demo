@@ -287,7 +287,7 @@ export default function App() {
 
       {/* HERO */}
       <section id="top" style={{
-        position: "relative", paddingTop: 180, paddingBottom: 96, overflow: "hidden",
+        position: "relative", paddingTop: 160, paddingBottom: 60, overflow: "hidden",
         background: `radial-gradient(120% 80% at 80% 0%, ${C.tealSoft} 0%, ${C.teal} 45%, ${C.tealDeep} 100%)`
       }}>
         <div aria-hidden="true" style={{ position: "absolute", top: 120, left: -120, width: 520, height: 520, borderRadius: "50%", background: "radial-gradient(circle, rgba(216,189,126,0.16) 0%, transparent 65%)", filter: "blur(20px)", zIndex: 0 }} />
@@ -326,18 +326,16 @@ export default function App() {
       </section>
 
       {/* PROBLEM */}
-      <section style={{ padding: "92px 0", background: C.tealDeep, position: "relative" }}>
+      <section style={{ padding: "56px 0", background: C.tealDeep, position: "relative" }}>
         <div style={wrap}>
-          <Reveal style={{ textAlign: "center", maxWidth: 740, margin: "0 auto 56px" }}>
+          <Reveal style={{ textAlign: "center", maxWidth: 740, margin: "0 auto 36px" }}>
             <Label>The Reality of the Shop Floor</Label>
             <h2 style={{ ...h2, margin: "18px 0 16px" }}>Your Business Runs on Trust. <span style={{ fontStyle: "italic", color: C.gold }}>Swarnix Protects It.</span></h2>
             <p style={{ ...body, maxWidth: 600, margin: "0 auto" }}>The work that keeps a jewellery house running rarely shows on the counter. These are the quiet leaks that cost you time, and sometimes the sale.</p>
           </Reveal>
-          <div className="k-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 22 }}>
-            {[["Repetitive questions on WhatsApp", "Staff retype the same rates, weights and stock details all day, every day."],
-            ["Stock stuck in registers", "Pieces are hard to find, and items already sold still get quoted to customers."],
-            ["Festival overload", "When wedding season arrives, the messages pile up faster than anyone can answer."],
-            ["Sales lost at night", "A buyer messages at 10 p.m., hears nothing back, and is gone by morning."]].map(([t, d], i) => (
+          <div className="k-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 22 }}>
+            {[["Customers go unanswered", "Messages arrive day and night — rates, stock, availability — faster than any team can handle."],
+            ["Sales lost to the competition", "A buyer messages at 10 p.m., hears nothing back, and walks into the next shop by morning."]].map(([t, d], i) => (
               <Reveal key={t} delay={i * 90}>
                 <div style={{ background: `linear-gradient(160deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 6, padding: "30px 26px", height: "100%", boxShadow: "0 18px 40px rgba(0,0,0,0.25)" }}>
                   <div style={{ width: 32, height: 1.5, background: goldGrad, marginBottom: 18 }} />
@@ -351,9 +349,9 @@ export default function App() {
       </section>
 
       {/* INTRODUCING */}
-      <section id="features" style={{ padding: "92px 0", background: C.teal, position: "relative" }}>
+      <section id="features" style={{ padding: "56px 0", background: C.teal, position: "relative" }}>
         <div style={wrap}>
-          <Reveal style={{ textAlign: "center", maxWidth: 770, margin: "0 auto 60px" }}>
+          <Reveal style={{ textAlign: "center", maxWidth: 770, margin: "0 auto 36px" }}>
             <Label>Introducing Swarnix</Label>
             <h2 style={{ ...h2, margin: "18px 0 18px" }}>Built by people who understand <span style={{ fontStyle: "italic", color: C.gold }}>the trade.</span></h2>
             <p style={{ ...body, maxWidth: 660, margin: "0 auto" }}>Swarnix is not a generic inventory tool fitted to jewellery. It understands gold and silver purity, colour and carat, stone types, weight, making charges and collections — and pricing that moves with the daily metal rate.</p>
@@ -362,12 +360,12 @@ export default function App() {
             {[{
               t: "Smart Inventory Management", img: "Tablet showing a tidy grid of catalogued gold and diamond pieces with weights and prices",
               src: "inventory.png",
-              pts: ["Your complete stock — descriptions, weight, purity, price, availability, images and categories — kept in one private place.", "Prices update on their own against today's live metal rate, so a quote is never out of date.", "Generate AI model photographs wearing your jewellery, ready to share on social media."]
+              pts: ["Your complete stock — weight, purity, price, images and categories — all in one private place, always up to date with the live metal rate.", "Generate AI model photographs wearing your jewellery, ready to share instantly on social media."]
             },
             {
               t: "The AI WhatsApp Agent", img: "WhatsApp chat mockup answering a customer about a necklace, in Hindi and English",
               srcs: ["whatsapp1.jpg", "whatsapp2.jpg", "whatsapp3.jpg", "whatsapp4.jpg"], h: 360,
-              pts: ["A knowledgeable salesperson, available 24/7 and connected to your live inventory.", "Replies instantly in the customer's own language — Hindi, Gujarati, Tamil, Marathi, English, any regional language.", "Customers send a voice command or upload a jewellery image to find similar pieces in your stock.", "Selfie Try-On lets a customer upload their photo and see themselves wearing the piece before they visit.", "It never quotes a sold-out piece, and never makes a customer wait."]
+              pts: ["Replies 24/7 in the customer's own language — Hindi, Gujarati, Tamil, Marathi, English and more.", "Voice search, image search, and Selfie Try-On — all connected to your live inventory.", "Never quotes a sold-out piece. Never makes a customer wait."]
             }].map((p, i) => (
               <Reveal key={p.t} delay={i * 140}>
                 <div style={{ background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 6, overflow: "hidden", height: "100%", boxShadow: "0 22px 50px rgba(0,0,0,0.28)" }}>
@@ -388,71 +386,11 @@ export default function App() {
         </div>
       </section>
 
-      {/* WHAT THIS MEANS — rich teal section */}
-      <section style={{ padding: "100px 0", background: `radial-gradient(90% 120% at 50% 0%, ${C.tealSoft} 0%, ${C.teal} 50%, ${C.tealDeep} 100%)`, position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", zIndex: 0 }}><Orbit size={760} op={0.28} /></div>
-        <Sparkle s={16} style={{ position: "absolute", top: 90, right: "12%" }} />
-        <Sparkle s={11} style={{ position: "absolute", bottom: 110, left: "9%" }} />
-        <div style={{ ...wrap, position: "relative", zIndex: 2 }}>
-          <Reveal style={{ textAlign: "center", marginBottom: 60 }}>
-            <Label>What This Means for Your Business</Label>
-            <h2 style={{ ...h2, margin: "20px auto 0", maxWidth: 760 }}>Less time on the phone. <span style={{ fontStyle: "italic", color: C.gold }}>More time at the counter.</span></h2>
-          </Reveal>
-          <div className="k-grid-5" style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 18 }}>
-            {[["01", "Faster replies, more sales", "Every message answered the moment it arrives."],
-            ["02", "Every customer feels at home", "Spoken to in their own language, every time."],
-            ["03", "Never sell what's gone", "Quotes always reflect live, available stock."],
-            ["04", "Staff freed for the counter", "Your people spend their hours on people."],
-            ["05", "Full visibility and control", "One clear view of stock, prices and activity."]].map(([n, t, d], i) => (
-              <Reveal key={n} delay={i * 90}>
-                <div style={{
-                  position: "relative", padding: "30px 22px 28px", height: "100%", borderRadius: 7,
-                  background: `linear-gradient(165deg, rgba(17,75,71,0.6) 0%, rgba(8,42,41,0.4) 100%)`,
-                  border: `1px solid ${C.tealLine}`, boxShadow: "0 16px 38px rgba(0,0,0,0.28)"
-                }}>
-                  <div style={{
-                    fontFamily: serif, fontSize: 34, fontWeight: 600, lineHeight: 1, marginBottom: 14,
-                    background: goldText, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text"
-                  }}>{n}</div>
-                  <div style={{ width: 26, height: 1.5, background: goldGrad, marginBottom: 16 }} />
-                  <h3 style={{ fontFamily: serif, fontSize: 21, fontWeight: 600, color: C.cream, margin: "0 0 10px", lineHeight: 1.25 }}>{t}</h3>
-                  <p style={{ ...body, fontSize: 14, lineHeight: 1.65, margin: 0 }}>{d}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <Pricing wrap={wrap} h2={h2} body={body} goldBtn={goldBtn} bookDemo={bookDemo} />
-
-      {/* WHY NOW */}
-      <section id="why" style={{ padding: "92px 0", background: C.tealDeep, position: "relative" }}>
+<Pricing wrap={wrap} h2={h2} body={body} goldBtn={goldBtn} bookDemo={bookDemo} />{/* HOW IT WORKS */}
+      <section id="how" style={{ padding: "56px 0", background: C.teal }}>
         <div style={wrap}>
-          <Reveal style={{ textAlign: "center", marginBottom: 54 }}>
-            <Label>Why Now</Label>
-            <h2 style={{ ...h2, margin: "18px 0 0" }}>The decision is already happening <span style={{ fontStyle: "italic", color: C.gold }}>on the phone.</span></h2>
-          </Reveal>
-          <div className="k-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 26 }}>
-            {[["Already on WhatsApp", "Customers compare and decide on their phones long before they ever walk through your door."],
-            ["First mover wins", "Be the shop that always replies right — and be it before the shop down the road is."],
-            ["Service protects sales", "A prompt, respectful reply keeps your name the one customers recommend to family."]].map(([t, d], i) => (
-              <Reveal key={t} delay={i * 110}>
-                <div style={{ background: `linear-gradient(160deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 6, padding: "34px 30px", height: "100%" }}>
-                  <Sparkle s={22} />
-                  <h3 style={{ fontFamily: serif, fontSize: 26, fontWeight: 600, color: C.cream, margin: "18px 0 12px" }}>{t}</h3>
-                  <p style={{ ...body, fontSize: 15.5, margin: 0 }}>{d}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* HOW IT WORKS */}
-      <section id="how" style={{ padding: "92px 0", background: C.teal }}>
-        <div style={wrap}>
-          <Reveal style={{ textAlign: "center", maxWidth: 700, margin: "0 auto 58px" }}>
+          <Reveal style={{ textAlign: "center", maxWidth: 700, margin: "0 auto 36px" }}>
             <Label>How It Works</Label>
             <h2 style={{ ...h2, margin: "18px 0 14px" }}>The Next Step: <span style={{ fontStyle: "italic", color: C.gold }}>A 30-Minute Demo.</span></h2>
             <p style={{ ...body, margin: 0 }}>No commitment, and no technical knowledge needed.</p>
@@ -474,7 +412,7 @@ export default function App() {
       </section>
 
       {/* FINAL CTA */}
-      <section id="contact" style={{ padding: "104px 0", background: `radial-gradient(80% 120% at 50% 0%, ${C.tealSoft} 0%, ${C.tealDeep} 55%, ${C.tealDark} 100%)`, position: "relative", overflow: "hidden" }}>
+      <section id="contact" style={{ padding: "64px 0", background: `radial-gradient(80% 120% at 50% 0%, ${C.tealSoft} 0%, ${C.tealDeep} 55%, ${C.tealDark} 100%)`, position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: -120, left: "50%", transform: "translateX(-50%)" }}><Orbit size={680} op={0.4} /></div>
         <div style={{ ...wrap, textAlign: "center", position: "relative", zIndex: 2 }}>
           <Reveal>
@@ -574,7 +512,7 @@ function Pricing({ wrap, h2, body, goldBtn, bookDemo }) {
   const cell = (v, i) => (<td key={i} style={{ textAlign: "center", padding: "13px 10px", fontFamily: sans, fontSize: 13.5, fontWeight: v === "Yes" ? 500 : 300, color: v === "—" ? "rgba(245,239,226,0.3)" : v === "Yes" ? C.gold : C.creamSoft, borderBottom: `1px solid ${C.tealLine}` }}>{v}</td>);
 
   return (
-    <section id="pricing" style={{ padding: "92px 0", background: C.teal, position: "relative" }}>
+    <section id="pricing" style={{ padding: "56px 0", background: C.teal, position: "relative" }}>
       <div style={wrap}>
         <Reveal style={{ textAlign: "center", marginBottom: 50 }}>
           <Label>Pricing</Label>
