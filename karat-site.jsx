@@ -559,9 +559,9 @@ function Pricing({ wrap, h2, body, goldBtn, bookDemo }) {
                   {popular && <div style={{ position: "absolute", top: -13, left: "50%", transform: "translateX(-50%)", background: C.tealDark, color: C.gold, fontFamily: sans, fontSize: 11, fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", padding: "6px 16px", borderRadius: 2, whiteSpace: "nowrap", border: `1px solid ${C.gold}` }}>★ Most Popular</div>}
                   <h3 style={{ fontFamily: serif, fontSize: 27, fontWeight: 600, color: popular ? C.ink : C.cream, margin: "4px 0 6px" }}>{p.name}</h3>
                   <p style={{ fontFamily: sans, fontSize: 13, fontWeight: 300, color: popular ? C.inkSoft : C.creamMute, marginBottom: 20 }}>{credits} monthly credits</p>
-                  {p.price && <div style={{ fontFamily: sans, fontSize: 14, color: popular ? "rgba(19,50,47,0.45)" : C.creamMute, textDecoration: "line-through", marginBottom: 4 }}>{p.price}</div>}
+                  <div style={{ fontFamily: sans, fontSize: 14, color: popular ? "rgba(19,50,47,0.45)" : C.creamMute, textDecoration: p.price ? "line-through" : "none", marginBottom: 4, minHeight: 19 }}>{p.price || " "}</div>
                   <div style={{ fontFamily: serif, fontSize: 28, fontWeight: 600, color: popular ? C.goldDeep : C.gold, lineHeight: 1.2, marginBottom: 8 }}>{p.offerPrice}</div>
-                  <div style={{ fontFamily: sans, fontSize: 12.5, fontWeight: 400, color: popular ? C.inkSoft : C.creamMute, marginBottom: 22 }}>
+                  <div style={{ fontFamily: sans, fontSize: 12.5, fontWeight: 400, color: popular ? C.inkSoft : C.creamMute, marginBottom: 22, minHeight: 34 }}>
                     {p.name === "Trial"
                       ? <>One-time onboarding <span style={{ fontWeight: 600, color: popular ? C.goldDeep : C.gold }}>Waived</span></>
                       : <>+ <span style={{ fontWeight: 600, color: popular ? C.goldDeep : C.gold }}>₹21,000 + GST</span> one-time onboarding</>}
