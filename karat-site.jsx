@@ -40,8 +40,8 @@ const goldText = "linear-gradient(100deg,#DFB48A 0%,#C8956C 50%,#A0643C 100%)";
 // grain texture
 const grain = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E\")";
 
-const LOGO_LIGHT = "/swarnix logo without background.jpg";
-const LOGO_LIGHT_SM = "/swarnix logo without background.jpg";
+const LOGO_LIGHT = "/swarnix logo without background.png";
+const LOGO_LIGHT_SM = "/swarnix logo without background.png";
 
 const LogoLight = ({ h = 50 }) => <img src={LOGO_LIGHT} alt="Swarnix — The Private Digital Showroom for Jewellers" style={{ height: h, width: "auto", display: "block" }} />;
 const LogoLightSm = ({ h = 34 }) => <img src={LOGO_LIGHT_SM} alt="Swarnix" style={{ height: h, width: "auto", display: "block" }} />;
