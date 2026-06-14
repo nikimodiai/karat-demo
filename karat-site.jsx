@@ -265,7 +265,7 @@ export default function App() {
         borderBottom: scrolled ? `1px solid ${C.tealLine}` : "1px solid transparent", transition: "all .4s ease"
       }}>
         <div style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "space-between", height: 76 }}>
-          <button onClick={() => go("top")} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center" }}><LogoLight h={46} /></button>
+          <button onClick={() => go("top")} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center" }}><LogoLight h={100} /></button>
           <nav className="k-desk" style={{ display: "flex", alignItems: "center", gap: 34 }}>
             {NAV.map(([t, id]) => (
               <button key={id} onClick={() => go(id)} style={{ fontFamily: sans, fontSize: 13, fontWeight: 400, letterSpacing: "0.06em", color: C.creamSoft, background: "none", border: "none", cursor: "pointer", transition: "color .2s" }}
@@ -491,7 +491,7 @@ export default function App() {
         <div style={{ ...wrap, textAlign: "center" }}>
           <p style={{ fontFamily: serif, fontStyle: "italic", fontSize: 23, color: C.creamSoft, margin: "0 0 28px" }}>With respect for the trade you have built.</p>
           <Hairline w={72} />
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "26px 0 14px" }}><LogoLightSm h={36} /></div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "26px 0 14px" }}><LogoLightSm h={72} /></div>
           <p style={{ fontFamily: sans, fontSize: 14.5, fontWeight: 300, color: C.creamMute, lineHeight: 1.9, margin: 0 }}>
             Nelishka AI Solutions &nbsp;•&nbsp; Mrs. Vibha Modi<br />+91 8591514105 &nbsp;•&nbsp; Mumbai, India
           </p>
