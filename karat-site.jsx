@@ -264,8 +264,8 @@ export default function App() {
         backdropFilter: scrolled ? "blur(14px)" : "none",
         borderBottom: scrolled ? `1px solid ${C.tealLine}` : "1px solid transparent", transition: "all .4s ease"
       }}>
-        <div style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "space-between", height: 76 }}>
-          <button onClick={() => go("top")} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center" }}><LogoLight h={100} /></button>
+        <div style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "space-between", height: 130 }}>
+          <button onClick={() => go("top")} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center" }}><LogoLight h={120} /></button>
           <nav className="k-desk" style={{ display: "flex", alignItems: "center", gap: 34 }}>
             {NAV.map(([t, id]) => (
               <button key={id} onClick={() => go(id)} style={{ fontFamily: sans, fontSize: 13, fontWeight: 400, letterSpacing: "0.06em", color: C.creamSoft, background: "none", border: "none", cursor: "pointer", transition: "color .2s" }}
@@ -287,7 +287,7 @@ export default function App() {
 
       {/* HERO */}
       <section id="top" style={{
-        position: "relative", paddingTop: 156, paddingBottom: 96, overflow: "hidden",
+        position: "relative", paddingTop: 180, paddingBottom: 96, overflow: "hidden",
         background: `radial-gradient(120% 80% at 80% 0%, ${C.tealSoft} 0%, ${C.teal} 45%, ${C.tealDeep} 100%)`
       }}>
         <div aria-hidden="true" style={{ position: "absolute", top: 120, left: -120, width: 520, height: 520, borderRadius: "50%", background: "radial-gradient(circle, rgba(216,189,126,0.16) 0%, transparent 65%)", filter: "blur(20px)", zIndex: 0 }} />
@@ -491,7 +491,7 @@ export default function App() {
         <div style={{ ...wrap, textAlign: "center" }}>
           <p style={{ fontFamily: serif, fontStyle: "italic", fontSize: 23, color: C.creamSoft, margin: "0 0 28px" }}>With respect for the trade you have built.</p>
           <Hairline w={72} />
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "26px 0 14px" }}><LogoLightSm h={72} /></div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "26px 0 14px" }}><LogoLightSm h={90} /></div>
           <p style={{ fontFamily: sans, fontSize: 14.5, fontWeight: 300, color: C.creamMute, lineHeight: 1.9, margin: 0 }}>
             Nelishka AI Solutions &nbsp;•&nbsp; Mrs. Vibha Modi<br />+91 8591514105 &nbsp;•&nbsp; Mumbai, India
           </p>
