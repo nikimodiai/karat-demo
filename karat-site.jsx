@@ -383,6 +383,15 @@ export default function App() {
               </Reveal>
             ))}
           </div>
+          <Reveal delay={280}>
+            <div style={{ marginTop: 30, background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 6, overflow: "hidden", boxShadow: "0 22px 50px rgba(0,0,0,0.28)" }}>
+              <video src="/AI Model generation fast.mp4" autoPlay loop muted playsInline style={{ width: "100%", display: "block", maxHeight: 400, objectFit: "cover" }} />
+              <div style={{ padding: "24px 30px 28px" }}>
+                <h3 style={{ fontFamily: serif, fontSize: 29, fontWeight: 600, color: C.gold, margin: "0 0 10px" }}>AI Model Generation</h3>
+                <p style={{ ...body, fontSize: 15, lineHeight: 1.65, margin: 0 }}>Generate AI models with your jewellery.</p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
