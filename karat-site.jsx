@@ -603,9 +603,13 @@ function Pricing({ wrap, h2, body, goldBtn, bookDemo }) {
 // ─── Demo modal ─────────────────────────────────────────────────────────
 function DemoModal({ initialPlan = "", goldBtn, onClose }) {
   const OWNER_EMAIL = "nikimodiai@gmail.com";
+  const WEBHOOK_URL = "https://n8n.srv1639765.hstgr.cloud/webhook/swarnix-lead";
   const [f, setF] = useState({ name: "", store: "", address: "", city: "", pincode: "", phone: "", waBusiness: "", plan: initialPlan });
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sentMessage, setSentMessage] = useState("");
+  const [sendError, setSendError] = useState("");
   useEffect(() => {
     const esc = (e) => e.key === "Escape" && onClose();
     document.addEventListener("keydown", esc);
@@ -623,17 +627,41 @@ function DemoModal({ initialPlan = "", goldBtn, onClose }) {
     setErrors(er);
     return Object.keys(er).length === 0;
   };
-  const submit = () => {
+  const submit = async () => {
     if (!validate()) return;
-    const subject = `New Swarnix Demo Request — ${f.store.trim()} (${f.city.trim()})`;
-    const lines = ["A new demo request has come in from the Swarnix website.", "",
-      `Name:                 ${f.name.trim()}`, `Jewellery Store:      ${f.store.trim()}`,
-      `Address:              ${f.address.trim() || "—"}`, `City:                 ${f.city.trim()}`,
-      `Pincode:              ${f.pincode.trim()}`, `Phone Number:         ${f.phone.trim()}`,
-      `WhatsApp Business No.: ${f.waBusiness.trim() || "—"}`, `Plan of Interest:     ${f.plan || "Not specified"}`,
-      "", "— Sent from the Swarnix website demo form."];
-    window.location.href = `mailto:${OWNER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
-    setSent(true);
+    setSendError("");
+    setSending(true);
+    const payload = {
+      name: f.name.trim(),
+      store: f.store.trim(),
+      address: f.address.trim(),
+      city: f.city.trim(),
+      pincode: f.pincode.trim(),
+      phone: f.phone.trim(),
+      waBusiness: f.waBusiness.trim(),
+      plan: f.plan || "",
+      source: "Swarnix website demo form",
+      submittedAt: new Date().toISOString(),
+    };
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error(`Request failed (${res.status})`);
+      let data = {};
+      try { data = await res.json(); } catch { /* non-JSON response */ }
+      if (data && data.success === false) {
+        throw new Error(data.message || "Something went wrong. Please try again.");
+      }
+      setSentMessage((data && data.message) || "Thanks! Our team will reach out shortly.");
+      setSent(true);
+    } catch (err) {
+      setSendError(err.message || "We couldn't send your request. Please try again, or email us directly.");
+    } finally {
+      setSending(false);
+    }
   };
   const field = (label, key, { required = false, type = "text", placeholder = "" } = {}) => (
     <div style={{ marginBottom: 16 }}>
@@ -658,8 +686,8 @@ function DemoModal({ initialPlan = "", goldBtn, onClose }) {
         {sent ? (
           <div style={{ padding: "44px 34px", textAlign: "center" }}>
             <div style={{ width: 56, height: 56, borderRadius: "50%", background: goldGrad, margin: "0 auto 22px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, color: C.tealDark }}>✓</div>
-            <h3 style={{ fontFamily: serif, fontSize: 27, fontWeight: 600, color: C.cream, margin: "0 0 12px" }}>Your email is ready to send.</h3>
-            <p style={{ fontFamily: sans, fontSize: 15, fontWeight: 300, color: C.creamSoft, lineHeight: 1.7, margin: "0 0 26px" }}>Your mail app should have opened with the details filled in and addressed to our team. Just press send, and we'll be in touch shortly. If nothing opened, you can write to us at <span style={{ color: C.gold }}>{OWNER_EMAIL}</span>.</p>
+            <h3 style={{ fontFamily: serif, fontSize: 27, fontWeight: 600, color: C.cream, margin: "0 0 12px" }}>Demo request received.</h3>
+            <p style={{ fontFamily: sans, fontSize: 15, fontWeight: 300, color: C.creamSoft, lineHeight: 1.7, margin: "0 0 26px" }}>{sentMessage} If you'd like to reach us in the meantime, you can write to us at <span style={{ color: C.gold }}>{OWNER_EMAIL}</span>.</p>
             <button onClick={onClose} style={{ ...goldBtn, padding: "13px 34px" }}>Close</button>
           </div>
         ) : (
@@ -683,7 +711,8 @@ function DemoModal({ initialPlan = "", goldBtn, onClose }) {
                 <option value="Enterprise" style={{ color: "#000" }}>Enterprise</option>
               </select>
             </div>
-            <button onClick={submit} className="k-gold-btn" style={{ ...goldBtn, width: "100%", padding: "15px" }}>Send My Demo Request</button>
+            <button onClick={submit} disabled={sending} className="k-gold-btn" style={{ ...goldBtn, width: "100%", padding: "15px", opacity: sending ? 0.7 : 1, cursor: sending ? "wait" : "pointer" }}>{sending ? "Sending…" : "Send My Demo Request"}</button>
+            {sendError && <div style={{ fontFamily: sans, fontSize: 13, color: "#E5A98E", textAlign: "center", marginTop: 12, lineHeight: 1.5 }}>{sendError}</div>}
             <p style={{ fontFamily: sans, fontSize: 12, fontWeight: 300, color: C.creamMute, textAlign: "center", marginTop: 14, lineHeight: 1.6 }}>Fields marked <span style={{ color: C.gold }}>*</span> are required. Your details go straight to our team — nothing is shared.</p>
           </div>
         )}
