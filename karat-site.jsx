@@ -369,27 +369,27 @@ export default function App() {
             }].map((p, i) => (
               <Reveal key={p.t} delay={i * 140}>
                 <div style={{ background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 6, overflow: "hidden", height: "100%", boxShadow: "0 22px 50px rgba(0,0,0,0.28)" }}>
+                  <div style={{ padding: "30px 30px 24px" }}>
+                    <h3 style={{ fontFamily: serif, fontSize: 29, fontWeight: 600, color: C.gold, margin: "0 0 18px" }}>{p.t}</h3>
+                    {p.pts.map((pt) => (<div key={pt} style={{ display: "flex", gap: 12, marginBottom: 14 }}><span style={{ marginTop: 9, flexShrink: 0, width: 6, height: 6, transform: "rotate(45deg)", background: goldGrad }} /><p style={{ ...body, fontSize: 15, lineHeight: 1.65, margin: 0 }}>{pt}</p></div>))}
+                  </div>
                   {p.src
                     ? <img src={p.src} alt={p.img} style={{ width: "100%", height: p.h ?? 230, objectFit: "cover", display: "block" }} />
                     : p.srcs
                     ? <div style={{ display: "flex", height: p.h ?? 230 }}>{p.srcs.map((s, j) => <img key={j} src={s} alt={p.img} style={{ flex: 1, width: 0, height: "100%", objectFit: "contain", display: "block" }} />)}</div>
                     : <Img h={p.h ?? 230} alt={p.img} label={p.img} />
                   }
-                  <div style={{ padding: "30px 30px 34px" }}>
-                    <h3 style={{ fontFamily: serif, fontSize: 29, fontWeight: 600, color: C.gold, margin: "0 0 18px" }}>{p.t}</h3>
-                    {p.pts.map((pt) => (<div key={pt} style={{ display: "flex", gap: 12, marginBottom: 14 }}><span style={{ marginTop: 9, flexShrink: 0, width: 6, height: 6, transform: "rotate(45deg)", background: goldGrad }} /><p style={{ ...body, fontSize: 15, lineHeight: 1.65, margin: 0 }}>{pt}</p></div>))}
-                  </div>
                 </div>
               </Reveal>
             ))}
           </div>
           <Reveal delay={280}>
             <div style={{ marginTop: 30, background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 6, overflow: "hidden", boxShadow: "0 22px 50px rgba(0,0,0,0.28)" }}>
-              <video src="/AI Model generation fast.mp4" autoPlay loop muted playsInline style={{ width: "100%", display: "block", maxHeight: 400, objectFit: "cover" }} />
-              <div style={{ padding: "24px 30px 28px" }}>
+              <div style={{ padding: "30px 30px 24px" }}>
                 <h3 style={{ fontFamily: serif, fontSize: 29, fontWeight: 600, color: C.gold, margin: "0 0 10px" }}>AI Model Generation</h3>
                 <p style={{ ...body, fontSize: 15, lineHeight: 1.65, margin: 0 }}>Generate AI models with your jewellery.</p>
               </div>
+              <video src="/AI Model generation fast.mp4" autoPlay loop muted playsInline style={{ width: "100%", display: "block", maxHeight: 400, objectFit: "cover" }} />
             </div>
           </Reveal>
         </div>
