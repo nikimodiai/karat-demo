@@ -560,7 +560,12 @@ function Pricing({ wrap, h2, body, goldBtn, bookDemo }) {
                   <h3 style={{ fontFamily: serif, fontSize: 27, fontWeight: 600, color: popular ? C.ink : C.cream, margin: "4px 0 6px" }}>{p.name}</h3>
                   <p style={{ fontFamily: sans, fontSize: 13, fontWeight: 300, color: popular ? C.inkSoft : C.creamMute, marginBottom: 20 }}>{credits} monthly credits</p>
                   {p.price && <div style={{ fontFamily: sans, fontSize: 14, color: popular ? "rgba(19,50,47,0.45)" : C.creamMute, textDecoration: "line-through", marginBottom: 4 }}>{p.price}</div>}
-                  <div style={{ fontFamily: serif, fontSize: 28, fontWeight: 600, color: popular ? C.goldDeep : C.gold, lineHeight: 1.2, marginBottom: 22 }}>{p.offerPrice}</div>
+                  <div style={{ fontFamily: serif, fontSize: 28, fontWeight: 600, color: popular ? C.goldDeep : C.gold, lineHeight: 1.2, marginBottom: 8 }}>{p.offerPrice}</div>
+                  <div style={{ fontFamily: sans, fontSize: 12.5, fontWeight: 400, color: popular ? C.inkSoft : C.creamMute, marginBottom: 22 }}>
+                    {p.name === "Trial"
+                      ? <>One-time onboarding <span style={{ fontWeight: 600, color: popular ? C.goldDeep : C.gold }}>Waived</span></>
+                      : <>+ <span style={{ fontWeight: 600, color: popular ? C.goldDeep : C.gold }}>₹21,000 + GST</span> one-time onboarding</>}
+                  </div>
                   <button onClick={() => bookDemo(p.name)} style={{ ...goldBtn, width: "100%", background: popular ? "linear-gradient(135deg,#13322F,#082A29)" : "transparent", color: popular ? C.cream : C.gold, border: popular ? "none" : `1px solid ${C.gold}`, boxShadow: popular ? "0 10px 26px rgba(0,0,0,0.3)" : "none" }}>Choose {p.name}</button>
                 </div>
               </Reveal>
@@ -586,15 +591,7 @@ function Pricing({ wrap, h2, body, goldBtn, bookDemo }) {
           </div>
         </Reveal>
         <Reveal style={{ marginTop: 22 }}><p style={{ ...body, fontSize: 14.5, textAlign: "center", maxWidth: 760, margin: "0 auto", color: C.creamMute }}>A credit covers one interaction — a text reply uses 1, a voice search 2, an image search 3. Higher plans add AI bulk import, VVIP/VIP customer tiers, and virtual Try-On.</p></Reveal>
-        <Reveal delay={120}>
-          <div style={{ marginTop: 40, background: `linear-gradient(135deg, ${C.sand} 0%, ${C.sandWarm} 100%)`, borderRadius: 8, padding: "32px 34px", textAlign: "center" }}>
-            <div style={{ fontFamily: sans, fontSize: 15, fontWeight: 300, color: C.inkSoft }}>
-              <span style={{ fontWeight: 600, color: C.ink }}>One-time onboarding charge</span> &nbsp;
-              <span style={{ color: C.goldDeep, fontWeight: 600, fontSize: 18 }}>₹21,000 + GST</span>
-            </div>
-            <div style={{ fontFamily: sans, fontSize: 13.5, fontWeight: 300, color: "rgba(19,50,47,0.65)", marginTop: 8 }}>Waived entirely on the Trial Plan. Our team handles your full setup, stock upload and AI training.</div>
-          </div>
-        </Reveal>
+        <Reveal style={{ marginTop: 14 }}><p style={{ ...body, fontSize: 13.5, textAlign: "center", maxWidth: 760, margin: "0 auto", color: C.creamMute }}>The one-time onboarding charge is waived entirely on the Trial Plan. Our team handles your full setup, stock upload and AI training.</p></Reveal>
       </div>
     </section>
   );
