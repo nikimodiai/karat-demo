@@ -42,6 +42,7 @@ const grain = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg
 
 const LOGO_LIGHT = "/swarnix-logo.png";
 const LOGO_LIGHT_SM = "/swarnix-logo.png";
+const APP_URL = import.meta.env.VITE_APP_URL || "http://localhost:5174";
 
 const LogoLight = ({ h = 50 }) => <img src={LOGO_LIGHT} alt="Swarnix — The Private Digital Showroom for Jewellers" style={{ height: h, width: "auto", display: "block" }} />;
 const LogoLightSm = ({ h = 34 }) => <img src={LOGO_LIGHT_SM} alt="Swarnix" style={{ height: h, width: "auto", display: "block" }} />;
@@ -272,6 +273,7 @@ export default function App() {
                 onMouseEnter={(e) => e.currentTarget.style.color = C.gold} onMouseLeave={(e) => e.currentTarget.style.color = C.creamSoft}>{t}</button>
             ))}
             <button onClick={() => bookDemo()} className="k-gold-btn" style={goldBtn} onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>Book a Free Demo</button>
+            <a href={APP_URL} style={{ fontFamily: sans, fontSize: 13, fontWeight: 400, letterSpacing: "0.06em", color: C.creamSoft, textDecoration: "none", padding: "10px 0", transition: "color .2s" }} onMouseEnter={(e) => e.currentTarget.style.color = C.gold} onMouseLeave={(e) => e.currentTarget.style.color = C.creamSoft}>Login</a>
           </nav>
           <button className="k-burger" onClick={() => setOpen(!open)} aria-label="Menu" style={{ display: "none", background: "none", border: "none", cursor: "pointer", flexDirection: "column", gap: 5 }}>
             {[0, 1, 2].map(i => <span key={i} style={{ width: 24, height: 1.5, background: C.cream, display: "block" }} />)}
@@ -281,6 +283,7 @@ export default function App() {
           <div className="k-mobile" style={{ background: C.tealDeep, borderTop: `1px solid ${C.tealLine}`, padding: "18px 28px 26px" }}>
             {NAV.map(([t, id]) => (<button key={id} onClick={() => go(id)} style={{ display: "block", width: "100%", textAlign: "left", padding: "13px 0", fontFamily: sans, fontSize: 16, color: C.cream, background: "none", border: "none", borderBottom: `1px solid ${C.tealLine}`, cursor: "pointer" }}>{t}</button>))}
             <button onClick={() => bookDemo()} className="k-gold-btn" style={{ ...goldBtn, width: "100%", marginTop: 18 }}>Book a Free Demo</button>
+            <a href={APP_URL} style={{ display: "block", width: "100%", textAlign: "center", padding: "13px 0", marginTop: 10, fontFamily: sans, fontSize: 16, color: C.creamSoft, textDecoration: "none", border: `1px solid ${C.tealLine}`, borderRadius: 2 }}>Login</a>
           </div>
         )}
       </header>
