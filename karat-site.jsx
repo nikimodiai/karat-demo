@@ -254,7 +254,7 @@ export default function App() {
   const wrap = { maxWidth: 1180, margin: "0 auto", padding: "0 28px" };
 
   return (
-    <div style={{ background: C.teal, color: C.cream, fontFamily: sans, WebkitFontSmoothing: "antialiased", overflowX: "hidden", position: "relative" }}>
+    <div style={{ background: C.teal, color: C.cream, fontFamily: sans, WebkitFontSmoothing: "antialiased", overflowX: "clip", position: "relative" }}>
       <FontLoader />
       <div aria-hidden="true" style={{ position: "fixed", inset: 0, backgroundImage: grain, backgroundSize: "180px 180px", pointerEvents: "none", zIndex: 1, opacity: 0.6 }} />
 
@@ -499,6 +499,10 @@ export default function App() {
           .k-pricing-grid{grid-template-columns:1fr 1fr!important;}
         }
         @media(max-width:560px){ .k-grid-4,.k-grid-5,.k-pricing-grid{grid-template-columns:1fr!important;} }
+        @media(max-width:700px){
+          .k-table-wrap{overflow-x:auto;}
+          .k-table-wrap thead th{position:static!important;top:auto!important;}
+        }
       `}</style>
     </div>
   );
@@ -577,7 +581,7 @@ function Pricing({ wrap, h2, body, goldBtn, bookDemo }) {
         </div>
         <Reveal style={{ marginTop: -40, marginBottom: 48 }}><p style={{ ...body, fontSize: 13.5, textAlign: "center", maxWidth: 760, margin: "0 auto", color: C.creamMute }}>Starter, Professional and Enterprise include a <span style={{ fontWeight: 600, color: C.gold }}>₹21,000 + GST</span> one-time onboarding charge — waived entirely on the Trial Plan. Our team handles your full setup, stock upload and AI training.</p></Reveal>
         <Reveal>
-          <div style={{ overflowX: "auto", overflowY: "visible", border: `1px solid ${C.tealLine}`, borderRadius: 7, background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)` }}>
+          <div className="k-table-wrap" style={{ border: `1px solid ${C.tealLine}`, borderRadius: 7, background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)` }}>
             <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 640 }}>
               <thead><tr>
                 <th style={{ position: "sticky", top: 130, zIndex: 2, background: C.tealSoft, textAlign: "left", padding: "16px 18px", fontFamily: sans, fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.creamMute, boxShadow: `inset 0 -1px 0 ${C.gold}` }}>Feature</th>
