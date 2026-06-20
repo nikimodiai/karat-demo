@@ -598,7 +598,7 @@ function Pricing({ wrap, h2, body, goldBtn, bookDemo }) {
             </table>
           </div>
         </Reveal>
-        <Reveal style={{ marginTop: 22 }}><p style={{ ...body, fontSize: 14.5, textAlign: "center", maxWidth: 760, margin: "0 auto", color: C.creamMute }}>A credit covers one interaction — a text reply uses 1, a voice search 2, an image search 3. Higher plans add AI bulk import, VVIP/VIP customer tiers, and virtual Try-On.</p></Reveal>
+        <Reveal style={{ marginTop: 22 }}><p style={{ ...body, fontSize: 14.5, textAlign: "center", maxWidth: 760, margin: "0 auto", color: C.creamMute }}>A credit covers one interaction — a text reply uses 1, a voice search 2, an image search 3.</p></Reveal>
       </div>
     </section>
   );
