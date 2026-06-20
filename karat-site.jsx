@@ -443,7 +443,8 @@ export default function App() {
           <Hairline w={72} />
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "26px 0 14px" }}><LogoLightSm h={90} /></div>
           <p style={{ fontFamily: sans, fontSize: 14.5, fontWeight: 300, color: C.creamMute, lineHeight: 1.9, margin: 0 }}>
-            Nelishka AI Solutions &nbsp;•&nbsp; Mrs. Vibha Modi<br />+91 8591514105 &nbsp;•&nbsp; Mumbai, India
+            Nelishka AI Solutions &nbsp;•&nbsp; Mrs. Vibha Modi<br />+91 8591514105 &nbsp;•&nbsp; Mumbai, India<br />
+            <a href="https://www.nelishkaai.in" target="_blank" rel="noopener noreferrer" style={{ color: C.creamMute, textDecoration: "none" }}>www.nelishkaai.in</a>
           </p>
           <p style={{ fontFamily: sans, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: C.gold, marginTop: 22 }}>Confidential • Swarnix</p>
         </div>
