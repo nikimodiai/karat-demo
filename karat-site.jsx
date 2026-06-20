@@ -567,7 +567,7 @@ function Pricing({ wrap, h2, body, goldBtn, bookDemo }) {
                   <div style={{ fontFamily: sans, fontSize: 12.5, fontWeight: 400, color: popular ? C.inkSoft : C.creamMute, marginBottom: 22, minHeight: 34 }}>
                     {p.name === "Trial"
                       ? <>One-time onboarding <span style={{ fontWeight: 600, color: popular ? C.goldDeep : C.gold }}>Waived</span></>
-                      : <>+ <span style={{ fontWeight: 600, color: popular ? C.goldDeep : C.gold }}>₹21,000 + GST</span> one-time onboarding</>}
+                      : " "}
                   </div>
                   <button onClick={() => bookDemo(p.name)} style={{ ...goldBtn, width: "100%", background: popular ? "linear-gradient(135deg,#13322F,#082A29)" : "transparent", color: popular ? C.cream : C.gold, border: popular ? "none" : `1px solid ${C.gold}`, boxShadow: popular ? "0 10px 26px rgba(0,0,0,0.3)" : "none" }}>Choose {p.name}</button>
                 </div>
@@ -576,11 +576,11 @@ function Pricing({ wrap, h2, body, goldBtn, bookDemo }) {
           })}
         </div>
         <Reveal>
-          <div style={{ overflowX: "auto", border: `1px solid ${C.tealLine}`, borderRadius: 7, background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)` }}>
+          <div style={{ overflowX: "auto", overflowY: "visible", border: `1px solid ${C.tealLine}`, borderRadius: 7, background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)` }}>
             <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 640 }}>
               <thead><tr>
-                <th style={{ textAlign: "left", padding: "16px 18px", fontFamily: sans, fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.creamMute, borderBottom: `1px solid ${C.gold}` }}>Feature</th>
-                {plans.map((p) => (<th key={p.name} style={{ textAlign: "center", padding: "16px 10px", fontFamily: serif, fontSize: 18, fontWeight: 600, color: p.name === popularName ? C.gold : C.cream, borderBottom: `1px solid ${C.gold}` }}>{p.name}</th>))}
+                <th style={{ position: "sticky", top: 130, zIndex: 2, background: C.tealSoft, textAlign: "left", padding: "16px 18px", fontFamily: sans, fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: C.creamMute, boxShadow: `inset 0 -1px 0 ${C.gold}` }}>Feature</th>
+                {plans.map((p) => (<th key={p.name} style={{ position: "sticky", top: 130, zIndex: 2, background: C.tealSoft, textAlign: "center", padding: "16px 10px", fontFamily: serif, fontSize: 18, fontWeight: 600, color: p.name === popularName ? C.gold : C.cream, boxShadow: `inset 0 -1px 0 ${C.gold}` }}>{p.name}</th>))}
               </tr></thead>
               <tbody>
                 {features.filter((f) => f.label !== "Credits").map((f) => (
@@ -594,7 +594,7 @@ function Pricing({ wrap, h2, body, goldBtn, bookDemo }) {
           </div>
         </Reveal>
         <Reveal style={{ marginTop: 22 }}><p style={{ ...body, fontSize: 14.5, textAlign: "center", maxWidth: 760, margin: "0 auto", color: C.creamMute }}>A credit covers one interaction — a text reply uses 1, a voice search 2, an image search 3. Higher plans add AI bulk import, VVIP/VIP customer tiers, and virtual Try-On.</p></Reveal>
-        <Reveal style={{ marginTop: 14 }}><p style={{ ...body, fontSize: 13.5, textAlign: "center", maxWidth: 760, margin: "0 auto", color: C.creamMute }}>The one-time onboarding charge is waived entirely on the Trial Plan. Our team handles your full setup, stock upload and AI training.</p></Reveal>
+        <Reveal style={{ marginTop: 14 }}><p style={{ ...body, fontSize: 13.5, textAlign: "center", maxWidth: 760, margin: "0 auto", color: C.creamMute }}>Starter, Professional and Enterprise include a <span style={{ fontWeight: 600, color: C.gold }}>₹21,000 + GST</span> one-time onboarding charge — waived entirely on the Trial Plan. Our team handles your full setup, stock upload and AI training.</p></Reveal>
       </div>
     </section>
   );
