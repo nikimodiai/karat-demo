@@ -43,6 +43,7 @@ const grain = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg
 const LOGO_LIGHT = "/swarnix-logo.png";
 const LOGO_LIGHT_SM = "/swarnix-logo.png";
 const APP_URL = import.meta.env.VITE_APP_URL || "http://localhost:5174";
+const WHATSAPP_DEMO_URL = "https://wa.me/917506407254?text=Hi%2C%20I%27d%20like%20to%20see%20the%20Swarnix%20demo";
 
 const LogoLight = ({ h = 50 }) => <img src={LOGO_LIGHT} alt="Swarnix — The Private Digital Showroom for Jewellers" style={{ height: h, width: "auto", display: "block" }} />;
 const LogoLightSm = ({ h = 34 }) => <img src={LOGO_LIGHT_SM} alt="Swarnix" style={{ height: h, width: "auto", display: "block" }} />;
@@ -303,14 +304,14 @@ export default function App() {
               <Reveal><Label>Swarnix — An initiative from Nelishka AI Solutions</Label></Reveal>
               <Reveal delay={120}>
                 <h1 style={{ fontFamily: serif, fontWeight: 500, color: C.cream, lineHeight: 1.0, letterSpacing: "-0.02em", fontSize: "clamp(46px,7vw,88px)", margin: "26px 0 0" }}>
-                  The Private Digital <span className="k-shimmer-text" style={{ fontStyle: "italic", fontWeight: 500 }}>Showroom</span> for Jewellers.
+                  The 24/7 salesperson that lives on your shop's <span className="k-shimmer-text" style={{ fontStyle: "italic", fontWeight: 500 }}>WhatsApp.</span>
                 </h1>
               </Reveal>
               <Reveal delay={240}><p style={{ ...body, fontSize: 18.5, maxWidth: 510, marginTop: 24 }}>Smart Inventory App and an AI WhatsApp Agent, built exclusively for the jewellery trade.</p></Reveal>
               <Reveal delay={360}>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginTop: 38 }}>
-                  <button onClick={() => bookDemo()} className="k-gold-btn" style={goldBtn} onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>Book Your Free Demo</button>
-                  <button onClick={() => go("how")} style={ghostBtn} onMouseEnter={(e) => { e.currentTarget.style.background = C.gold; e.currentTarget.style.color = C.tealDark; }} onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.cream; }}>See How It Works</button>
+                  <a href={WHATSAPP_DEMO_URL} target="_blank" rel="noopener noreferrer" className="k-gold-btn" style={{ ...goldBtn, textDecoration: "none", display: "inline-flex", alignItems: "center" }} onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>See a 2-Minute Live Demo on WhatsApp</a>
+                  <button onClick={() => bookDemo()} style={ghostBtn} onMouseEnter={(e) => { e.currentTarget.style.background = C.gold; e.currentTarget.style.color = C.tealDark; }} onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.cream; }}>Book a Free Demo</button>
                 </div>
               </Reveal>
               <Reveal delay={460}>
@@ -333,7 +334,7 @@ export default function App() {
         <div style={wrap}>
           <Reveal style={{ textAlign: "center", maxWidth: 740, margin: "0 auto 36px" }}>
             <Label>The Reality of the Shop Floor</Label>
-            <h2 style={{ ...h2, margin: "18px 0 16px" }}>Your Business Runs on Trust. <span style={{ fontStyle: "italic", color: C.gold }}>Swarnix Protects It.</span></h2>
+            <h2 style={{ ...h2, margin: "18px 0 16px" }}>Replies to customers <span style={{ fontStyle: "italic", color: C.gold }}>the moment you can't.</span></h2>
             <p style={{ ...body, maxWidth: 600, margin: "0 auto" }}>The work that keeps a jewellery house running rarely shows on the counter. These are the quiet leaks that cost you time, and sometimes the sale.</p>
           </Reveal>
           <div className="k-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 22 }}>
@@ -356,24 +357,24 @@ export default function App() {
         <div style={wrap}>
           <Reveal style={{ textAlign: "center", maxWidth: 770, margin: "0 auto 36px" }}>
             <Label>Introducing Swarnix</Label>
-            <h2 style={{ ...h2, margin: "18px 0 18px" }}>Built by people who understand <span style={{ fontStyle: "italic", color: C.gold }}>the trade.</span></h2>
+            <h2 style={{ ...h2, margin: "18px 0 18px" }}>Made for jewellery shops, <span style={{ fontStyle: "italic", color: C.gold }}>not generic bots.</span></h2>
             <p style={{ ...body, maxWidth: 660, margin: "0 auto" }}>Swarnix is not a generic inventory tool fitted to jewellery. It understands gold and silver purity, colour and carat, stone types, weight, making charges and collections — and pricing that moves with the daily metal rate.</p>
           </Reveal>
           <div className="k-pillars" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 30 }}>
             {[{
-              t: "Smart Inventory Management", img: "Tablet showing a tidy grid of catalogued gold and diamond pieces with weights and prices",
+              t: "Customers try on jewellery from their sofa", img: "Tablet showing a tidy grid of catalogued gold and diamond pieces with weights and prices",
               src: "inventory.png",
               pts: ["Your complete stock — weight, purity, price, images and categories — all in one private place, always up to date with the live metal rate.", "Generate AI model photographs wearing your jewellery, ready to share instantly on social media."]
             },
             {
-              t: "The AI WhatsApp Agent", img: "WhatsApp chat mockup answering a customer about a necklace, in Hindi and English",
+              t: "Works in the language your customer speaks", img: "WhatsApp chat mockup answering a customer about a necklace, in Hindi and English",
               srcs: ["whatsapp1.jpg", "whatsapp2.jpg", "whatsapp3.jpg", "whatsapp4.jpg"], h: 360,
               pts: ["Replies 24/7 in the customer's own language — Hindi, Gujarati, Tamil, Marathi, English and more.", "Voice search, image search, and Selfie Try-On — all connected to your live inventory.", "Never quotes a sold-out piece. Never makes a customer wait."]
             }].map((p, i) => (
               <Reveal key={p.t} delay={i * 140}>
                 <div style={{ background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 6, overflow: "hidden", height: "100%", boxShadow: "0 22px 50px rgba(0,0,0,0.28)" }}>
                   <div style={{ padding: "30px 30px 24px" }}>
-                    <h3 style={{ fontFamily: serif, fontSize: 29, fontWeight: 600, color: C.gold, margin: "0 0 18px" }}>{p.t}</h3>
+                    <h2 style={{ fontFamily: serif, fontSize: 29, fontWeight: 600, color: C.gold, margin: "0 0 18px" }}>{p.t}</h2>
                     {p.pts.map((pt) => (<div key={pt} style={{ display: "flex", gap: 12, marginBottom: 14 }}><span style={{ marginTop: 9, flexShrink: 0, width: 6, height: 6, transform: "rotate(45deg)", background: goldGrad }} /><p style={{ ...body, fontSize: 15, lineHeight: 1.65, margin: 0 }}>{pt}</p></div>))}
                   </div>
                   {p.src
@@ -431,7 +432,10 @@ export default function App() {
             <Sparkle s={28} style={{ marginBottom: 4 }} />
             <h2 style={{ fontFamily: serif, fontWeight: 500, color: C.cream, fontSize: "clamp(36px,5.2vw,60px)", lineHeight: 1.06, margin: "18px 0 16px" }}>Book Your <span style={{ fontStyle: "italic", color: C.gold }}>Free Demo</span> Today.</h2>
             <p style={{ fontFamily: sans, fontWeight: 300, color: C.creamSoft, fontSize: 16.5, letterSpacing: "0.02em", marginBottom: 38 }}>No commitment • No setup work on your side • Fully managed by Swarnix.</p>
-            <button onClick={() => bookDemo()} className="k-gold-btn" style={{ ...goldBtn, padding: "16px 42px", fontSize: 14 }} onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>Book Your Free Demo</button>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "center" }}>
+              <a href={WHATSAPP_DEMO_URL} target="_blank" rel="noopener noreferrer" className="k-gold-btn" style={{ ...goldBtn, padding: "16px 42px", fontSize: 14, textDecoration: "none", display: "inline-flex", alignItems: "center" }} onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>See a 2-Minute Live Demo on WhatsApp</a>
+              <button onClick={() => bookDemo()} style={{ ...ghostBtn, padding: "16px 42px", fontSize: 14 }} onMouseEnter={(e) => { e.currentTarget.style.background = C.gold; e.currentTarget.style.color = C.tealDark; }} onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.cream; }}>Book a Free Demo</button>
+            </div>
           </Reveal>
         </div>
       </section>
