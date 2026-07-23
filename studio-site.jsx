@@ -91,7 +91,7 @@ const Sparkle = ({ s = 14, style = {} }) => (
 );
 const Hairline = ({ w = 70, m = "0 auto", c = goldGrad }) => <div style={{ width: w, height: 1, background: c, margin: m }} />;
 const Label = ({ children, style = {} }) => (
-  <div style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: sans, fontSize: 11.5, fontWeight: 500, letterSpacing: "0.3em", textTransform: "uppercase", color: C.gold, ...style }}>
+  <div style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: sans, fontSize: 13, fontWeight: 500, letterSpacing: "0.3em", textTransform: "uppercase", color: C.gold, ...style }}>
     <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.gold }} />
     {children}
   </div>
@@ -132,19 +132,19 @@ export default function StudioSite() {
   const go = (id) => { setOpen(false); document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); };
 
   const goldBtn = {
-    fontFamily: sans, fontSize: 13, fontWeight: 500, letterSpacing: "0.1em", color: C.tealDark,
+    fontFamily: sans, fontSize: 14.5, fontWeight: 500, letterSpacing: "0.1em", color: C.tealDark,
     background: goldGrad, border: "none", borderRadius: 2, padding: "13px 28px", cursor: "pointer",
     textTransform: "uppercase", boxShadow: "0 10px 30px rgba(216,189,126,0.25)", transition: "transform .25s, box-shadow .25s",
     textDecoration: "none", display: "inline-flex", alignItems: "center",
   };
   const ghostBtn = {
-    fontFamily: sans, fontSize: 13, fontWeight: 400, letterSpacing: "0.1em", color: C.cream,
+    fontFamily: sans, fontSize: 14.5, fontWeight: 400, letterSpacing: "0.1em", color: C.cream,
     background: "transparent", border: `1px solid ${C.gold}`, borderRadius: 2, padding: "13px 28px",
     cursor: "pointer", textTransform: "uppercase", transition: "background .25s,color .25s",
     textDecoration: "none", display: "inline-flex", alignItems: "center",
   };
-  const h2 = { fontFamily: serif, fontWeight: 500, color: C.cream, lineHeight: 1.06, fontSize: "clamp(32px,4.6vw,56px)", letterSpacing: "-0.01em" };
-  const body = { fontFamily: sans, fontWeight: 300, color: C.creamSoft, lineHeight: 1.85, fontSize: 16.5 };
+  const h2 = { fontFamily: serif, fontWeight: 500, color: C.cream, lineHeight: 1.06, fontSize: "clamp(34px,4.8vw,58px)", letterSpacing: "-0.01em" };
+  const body = { fontFamily: sans, fontWeight: 300, color: C.creamSoft, lineHeight: 1.85, fontSize: 18 };
   const wrap = { maxWidth: 1180, margin: "0 auto", padding: "0 28px" };
 
   return (
@@ -162,11 +162,11 @@ export default function StudioSite() {
         <div style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "space-between", height: 118 }}>
           <button onClick={() => go("top")} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center", gap: 12 }}>
             <LogoLight h={104} />
-            <span style={{ fontFamily: serif, fontSize: 26, fontWeight: 500, color: C.gold, fontStyle: "italic", letterSpacing: "0.01em" }}>Studio</span>
+            <span style={{ fontFamily: serif, fontSize: 27.5, fontWeight: 500, color: C.gold, fontStyle: "italic", letterSpacing: "0.01em" }}>Studio</span>
           </button>
           <nav className="k-desk" style={{ display: "flex", alignItems: "center", gap: 30 }}>
             {NAV.map(([t, id]) => (
-              <button key={id} onClick={() => go(id)} style={{ fontFamily: sans, fontSize: 13, fontWeight: 400, letterSpacing: "0.06em", color: C.creamSoft, background: "none", border: "none", cursor: "pointer", transition: "color .2s" }}
+              <button key={id} onClick={() => go(id)} style={{ fontFamily: sans, fontSize: 14.5, fontWeight: 400, letterSpacing: "0.06em", color: C.creamSoft, background: "none", border: "none", cursor: "pointer", transition: "color .2s" }}
                 onMouseEnter={(e) => e.currentTarget.style.color = C.gold} onMouseLeave={(e) => e.currentTarget.style.color = C.creamSoft}>{t}</button>
             ))}
             <a href={STUDIO_APP_URL} className="k-gold-btn" style={goldBtn} onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>Login &amp; Start Free</a>
@@ -177,7 +177,7 @@ export default function StudioSite() {
         </div>
         {open && (
           <div className="k-mobile" style={{ background: C.tealDeep, borderTop: `1px solid ${C.tealLine}`, padding: "18px 28px 26px" }}>
-            {NAV.map(([t, id]) => (<button key={id} onClick={() => go(id)} style={{ display: "block", width: "100%", textAlign: "left", padding: "13px 0", fontFamily: sans, fontSize: 16, color: C.cream, background: "none", border: "none", borderBottom: `1px solid ${C.tealLine}`, cursor: "pointer" }}>{t}</button>))}
+            {NAV.map(([t, id]) => (<button key={id} onClick={() => go(id)} style={{ display: "block", width: "100%", textAlign: "left", padding: "13px 0", fontFamily: sans, fontSize: 17.5, color: C.cream, background: "none", border: "none", borderBottom: `1px solid ${C.tealLine}`, cursor: "pointer" }}>{t}</button>))}
             <a href={STUDIO_APP_URL} className="k-gold-btn" style={{ ...goldBtn, width: "100%", marginTop: 18, justifyContent: "center" }}>Login &amp; Start Free</a>
           </div>
         )}
@@ -201,13 +201,12 @@ export default function StudioSite() {
                   Studio-quality jewellery photos &amp; reels, <span className="k-shimmer-text" style={{ fontStyle: "italic", fontWeight: 500 }}>in seconds.</span>
                 </h1>
               </Reveal>
-              <Reveal delay={240}><p style={{ ...body, fontSize: 18.5, maxWidth: 520, marginTop: 22 }}>Turn plain counter photos into clean studio shots, AI-model campaigns, metal swaps, reels and fresh designs. No lightbox, no photographer, no studio.</p></Reveal>
+              <Reveal delay={240}><p style={{ ...body, fontSize: 20, maxWidth: 520, marginTop: 22 }}>Turn plain counter photos into clean studio shots, AI-model campaigns, metal swaps, reels and fresh designs. No lightbox, no photographer, no studio.</p></Reveal>
               <Reveal delay={320}>
                 <div style={{ display: "inline-flex", flexWrap: "wrap", alignItems: "center", gap: "8px 14px", marginTop: 20, padding: "10px 16px", borderRadius: 4, background: "rgba(216,189,126,0.12)", border: `1px solid ${C.tealLine}` }}>
-                  <span style={{ fontFamily: serif, fontSize: 20, fontWeight: 700, color: C.goldBright }}>₹10<span style={{ fontFamily: sans, fontSize: 13, fontWeight: 400, color: C.creamSoft }}> / studio image</span></span>
+                  <span style={{ fontFamily: serif, fontSize: 21.5, fontWeight: 700, color: C.goldBright }}>₹10<span style={{ fontFamily: sans, fontSize: 14.5, fontWeight: 400, color: C.creamSoft }}> / studio image</span></span>
                   <span style={{ color: C.gold }}>◆</span>
-                  <span style={{ fontFamily: serif, fontSize: 20, fontWeight: 700, color: C.goldBright }}>Reels from ₹20</span>
-                  <span style={{ display: "block", width: "100%", fontFamily: sans, fontSize: 12.5, fontWeight: 300, color: C.creamMute, marginTop: 2 }}>An image costs the same as one colour printout.</span>
+                  <span style={{ fontFamily: serif, fontSize: 21.5, fontWeight: 700, color: C.goldBright }}>Reels from ₹20</span>
                 </div>
               </Reveal>
               <Reveal delay={360}>
@@ -217,7 +216,7 @@ export default function StudioSite() {
                 </div>
               </Reveal>
               <Reveal delay={460}>
-                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px 18px", marginTop: 40, fontFamily: sans, fontSize: 11.5, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: C.creamMute }}>
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px 18px", marginTop: 40, fontFamily: sans, fontSize: 13, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: C.creamMute }}>
                   <span>Sign in with Google</span><span style={{ color: C.gold }}>◆</span>
                   <span>No Approval</span><span style={{ color: C.gold }}>◆</span>
                   <span>Pay Per Credit</span>
@@ -227,7 +226,7 @@ export default function StudioSite() {
             <Reveal delay={220}>
               <div style={{ position: "relative", borderRadius: 10, overflow: "hidden", border: `1px solid ${C.tealLine}`, boxShadow: "0 30px 70px rgba(0,0,0,0.5)", background: `linear-gradient(160deg, ${C.tealDeep} 0%, ${C.tealDark} 100%)` }}>
                 <video src="/previews/swarnix-reel.mp4" autoPlay loop muted playsInline style={{ width: "100%", display: "block", maxHeight: 560, objectFit: "contain" }} />
-                <div style={{ position: "absolute", top: 14, left: 14, background: "rgba(6,31,30,0.72)", backdropFilter: "blur(6px)", border: `1px solid ${C.tealLine}`, borderRadius: 3, padding: "6px 12px", fontFamily: sans, fontSize: 11, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: C.gold }}>Made with Swarnix Studio</div>
+                <div style={{ position: "absolute", top: 14, left: 14, background: "rgba(6,31,30,0.72)", backdropFilter: "blur(6px)", border: `1px solid ${C.tealLine}`, borderRadius: 3, padding: "6px 12px", fontFamily: sans, fontSize: 12.5, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: C.gold }}>Made with Swarnix Studio</div>
               </div>
             </Reveal>
           </div>
@@ -241,15 +240,15 @@ export default function StudioSite() {
             <div aria-hidden="true" style={{ position: "absolute", top: 16, right: 22 }}><Sparkle s={18} /></div>
             <div className="k-priceband" style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 28, alignItems: "center" }}>
               <div style={{ textAlign: "right" }}>
-                <div style={{ fontFamily: sans, fontSize: 11.5, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: C.goldDeep, marginBottom: 8 }}>Studio Image</div>
+                <div style={{ fontFamily: sans, fontSize: 13, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: C.goldDeep, marginBottom: 8 }}>Studio Image</div>
                 <div style={{ fontFamily: serif, fontWeight: 700, color: C.ink, lineHeight: 1, fontSize: "clamp(34px,5vw,52px)" }}>₹10 <span style={{ fontSize: "0.42em", fontWeight: 500, color: C.inkSoft, letterSpacing: "0.02em" }}>per image</span></div>
-                <div style={{ fontFamily: sans, fontSize: 13.5, fontWeight: 400, color: C.inkSoft, marginTop: 8, lineHeight: 1.5 }}>The cost of a single colour printout — for a studio-quality photo.</div>
+                <div style={{ fontFamily: sans, fontSize: 15, fontWeight: 400, color: C.inkSoft, marginTop: 8, lineHeight: 1.5 }}>The cost of a single colour printout — for a studio-quality photo.</div>
               </div>
               <div aria-hidden="true" className="k-priceband-div" style={{ width: 1, height: 78, background: "rgba(19,50,47,0.25)", justifySelf: "center" }} />
               <div style={{ textAlign: "left" }}>
-                <div style={{ fontFamily: sans, fontSize: 11.5, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: C.goldDeep, marginBottom: 8 }}>Reels</div>
+                <div style={{ fontFamily: sans, fontSize: 13, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: C.goldDeep, marginBottom: 8 }}>Reels</div>
                 <div style={{ fontFamily: serif, fontWeight: 700, color: C.ink, lineHeight: 1, fontSize: "clamp(34px,5vw,52px)" }}>from ₹20</div>
-                <div style={{ fontFamily: sans, fontSize: 13.5, fontWeight: 400, color: C.inkSoft, marginTop: 8, lineHeight: 1.5 }}>A short, shareable reel with motion and music — Instagram-ready.</div>
+                <div style={{ fontFamily: sans, fontSize: 15, fontWeight: 400, color: C.inkSoft, marginTop: 8, lineHeight: 1.5 }}>A short, shareable reel with motion and music — Instagram-ready.</div>
               </div>
             </div>
           </div>
@@ -271,8 +270,8 @@ export default function StudioSite() {
               <Reveal key={t} delay={i * 90}>
                 <div style={{ background: `linear-gradient(160deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 6, padding: "30px 26px", height: "100%", boxShadow: "0 18px 40px rgba(0,0,0,0.25)" }}>
                   <div style={{ width: 32, height: 1.5, background: goldGrad, marginBottom: 18 }} />
-                  <h3 style={{ fontFamily: serif, fontSize: 24, fontWeight: 600, color: C.cream, margin: "0 0 12px", lineHeight: 1.2 }}>{t}</h3>
-                  <p style={{ ...body, fontSize: 15, lineHeight: 1.7, margin: 0 }}>{d}</p>
+                  <h3 style={{ fontFamily: serif, fontSize: 25.5, fontWeight: 600, color: C.cream, margin: "0 0 12px", lineHeight: 1.2 }}>{t}</h3>
+                  <p style={{ ...body, fontSize: 16.5, lineHeight: 1.7, margin: 0 }}>{d}</p>
                 </div>
               </Reveal>
             ))}
@@ -294,8 +293,8 @@ export default function StudioSite() {
                 <div style={{ background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 8, overflow: "hidden", height: "100%", boxShadow: "0 20px 46px rgba(0,0,0,0.26)", display: "flex", flexDirection: "column" }}>
                   <FeatureMedia media={ft.media} />
                   <div style={{ padding: "22px 24px 26px" }}>
-                    <h3 style={{ fontFamily: serif, fontSize: 25, fontWeight: 600, color: C.gold, margin: "0 0 10px" }}>{ft.label}</h3>
-                    <p style={{ ...body, fontSize: 14.5, lineHeight: 1.65, margin: 0 }}>{ft.desc}</p>
+                    <h3 style={{ fontFamily: serif, fontSize: 26.5, fontWeight: 600, color: C.gold, margin: "0 0 10px" }}>{ft.label}</h3>
+                    <p style={{ ...body, fontSize: 16, lineHeight: 1.65, margin: 0 }}>{ft.desc}</p>
                   </div>
                 </div>
               </Reveal>
@@ -313,22 +312,22 @@ export default function StudioSite() {
               <div aria-hidden="true" style={{ position: "absolute", top: 20, right: 26 }}><Sparkle s={22} /></div>
               <div className="k-refer" style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 40, alignItems: "center" }}>
                 <div>
-                  <div style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: sans, fontSize: 11.5, fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: C.goldDeep, marginBottom: 16 }}>
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: sans, fontSize: 13, fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: C.goldDeep, marginBottom: 16 }}>
                     <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.goldDeep }} />Refer &amp; Earn
                   </div>
                   <h2 style={{ fontFamily: serif, fontWeight: 600, color: C.ink, lineHeight: 1.05, fontSize: "clamp(30px,4.4vw,52px)", letterSpacing: "-0.01em", margin: "0 0 14px" }}>Invite a jeweller — <span style={{ fontStyle: "italic", color: C.goldDeep }}>you both get 10 free credits.</span></h2>
-                  <p style={{ fontFamily: sans, fontWeight: 300, color: C.inkSoft, lineHeight: 1.75, fontSize: 16.5, margin: "0 0 26px", maxWidth: 520 }}>Share your referral link with a fellow jeweller. When they make their first purchase, ten credits land in each of your accounts — enough for a full set of studio photos or a reel, on the house.</p>
-                  <a href={STUDIO_APP_URL} className="k-gold-btn" style={{ fontFamily: sans, fontSize: 13, fontWeight: 600, letterSpacing: "0.1em", color: C.cream, background: "linear-gradient(135deg,#13322F,#082A29)", border: "none", borderRadius: 3, padding: "15px 34px", cursor: "pointer", textTransform: "uppercase", boxShadow: "0 12px 30px rgba(6,31,30,0.35)", textDecoration: "none", display: "inline-flex", alignItems: "center" }}>Get Your Referral Link</a>
+                  <p style={{ fontFamily: sans, fontWeight: 300, color: C.inkSoft, lineHeight: 1.75, fontSize: 18, margin: "0 0 26px", maxWidth: 520 }}>Share your referral link with a fellow jeweller. When they make their first purchase, ten credits land in each of your accounts — enough for a full set of studio photos or a reel, on the house.</p>
+                  <a href={STUDIO_APP_URL} className="k-gold-btn" style={{ fontFamily: sans, fontSize: 14.5, fontWeight: 600, letterSpacing: "0.1em", color: C.cream, background: "linear-gradient(135deg,#13322F,#082A29)", border: "none", borderRadius: 3, padding: "15px 34px", cursor: "pointer", textTransform: "uppercase", boxShadow: "0 12px 30px rgba(6,31,30,0.35)", textDecoration: "none", display: "inline-flex", alignItems: "center" }}>Get Your Referral Link</a>
                 </div>
                 <div style={{ display: "flex", justifyContent: "center" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                     {[["You", "+10"], ["Them", "+10"]].map(([who, amt], i) => (
                       <React.Fragment key={who}>
-                        {i === 1 && <div style={{ fontFamily: serif, fontSize: 34, color: C.goldDeep, padding: "0 6px" }}>+</div>}
+                        {i === 1 && <div style={{ fontFamily: serif, fontSize: 35.5, color: C.goldDeep, padding: "0 6px" }}>+</div>}
                         <div style={{ width: 128, height: 128, borderRadius: "50%", background: C.tealDark, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", boxShadow: "0 16px 40px rgba(6,31,30,0.4)", border: `2px solid ${C.goldBright}` }}>
-                          <div style={{ fontFamily: serif, fontSize: 40, fontWeight: 700, color: C.goldBright, lineHeight: 1 }}>{amt}</div>
-                          <div style={{ fontFamily: sans, fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: C.creamMute, marginTop: 6 }}>{who}</div>
-                          <div style={{ fontFamily: sans, fontSize: 9.5, letterSpacing: "0.16em", textTransform: "uppercase", color: C.creamMute, marginTop: 2 }}>Credits</div>
+                          <div style={{ fontFamily: serif, fontSize: 41.5, fontWeight: 700, color: C.goldBright, lineHeight: 1 }}>{amt}</div>
+                          <div style={{ fontFamily: sans, fontSize: 12.5, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: C.creamMute, marginTop: 6 }}>{who}</div>
+                          <div style={{ fontFamily: sans, fontSize: 11, letterSpacing: "0.16em", textTransform: "uppercase", color: C.creamMute, marginTop: 2 }}>Credits</div>
                         </div>
                       </React.Fragment>
                     ))}
@@ -354,9 +353,9 @@ export default function StudioSite() {
             ["3", "Download & post", "Save it to your Library, download it, and share straight to Instagram or WhatsApp."]].map(([n, t, d], i) => (
               <Reveal key={n} delay={i * 120}>
                 <div style={{ position: "relative", padding: "44px 28px 30px", background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 6, height: "100%", boxShadow: "0 18px 40px rgba(0,0,0,0.25)" }}>
-                  <div style={{ position: "absolute", top: -26, left: 28, width: 52, height: 52, borderRadius: "50%", background: goldGrad, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: serif, fontSize: 24, fontWeight: 600, color: C.tealDark, boxShadow: "0 10px 26px rgba(216,189,126,0.35)" }}>{n}</div>
-                  <h3 style={{ fontFamily: serif, fontSize: 26, fontWeight: 600, color: C.cream, margin: "8px 0 12px" }}>{t}</h3>
-                  <p style={{ ...body, fontSize: 15.5, margin: 0 }}>{d}</p>
+                  <div style={{ position: "absolute", top: -26, left: 28, width: 52, height: 52, borderRadius: "50%", background: goldGrad, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: serif, fontSize: 25.5, fontWeight: 600, color: C.tealDark, boxShadow: "0 10px 26px rgba(216,189,126,0.35)" }}>{n}</div>
+                  <h3 style={{ fontFamily: serif, fontSize: 27.5, fontWeight: 600, color: C.cream, margin: "8px 0 12px" }}>{t}</h3>
+                  <p style={{ ...body, fontSize: 17, margin: 0 }}>{d}</p>
                 </div>
               </Reveal>
             ))}
@@ -375,22 +374,22 @@ export default function StudioSite() {
           <div className="k-price2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, maxWidth: 820, margin: "0 auto" }}>
             <Reveal>
               <div style={{ background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 8, padding: "36px 30px", height: "100%", textAlign: "center", boxShadow: "0 18px 40px rgba(0,0,0,0.22)" }}>
-                <h3 style={{ fontFamily: serif, fontSize: 28, fontWeight: 600, color: C.cream, margin: "0 0 6px" }}>Start Free</h3>
-                <div style={{ fontFamily: serif, fontSize: 46, fontWeight: 600, color: C.gold, lineHeight: 1.1, margin: "10px 0 4px" }}>3 credits</div>
-                <p style={{ ...body, fontSize: 14, margin: "0 0 24px", color: C.creamMute }}>free on sign-up · no card needed</p>
+                <h3 style={{ fontFamily: serif, fontSize: 29.5, fontWeight: 600, color: C.cream, margin: "0 0 6px" }}>Start Free</h3>
+                <div style={{ fontFamily: serif, fontSize: 47.5, fontWeight: 600, color: C.gold, lineHeight: 1.1, margin: "10px 0 4px" }}>3 credits</div>
+                <p style={{ ...body, fontSize: 15.5, margin: "0 0 24px", color: C.creamMute }}>free on sign-up · no card needed</p>
                 <a href={STUDIO_APP_URL} className="k-gold-btn" style={{ ...goldBtn, width: "100%", justifyContent: "center" }}>Sign in with Google</a>
               </div>
             </Reveal>
             <Reveal delay={100}>
               <div style={{ background: `linear-gradient(165deg, ${C.sandWarm} 0%, ${C.sand} 100%)`, borderRadius: 8, padding: "36px 30px", height: "100%", textAlign: "center", boxShadow: "0 28px 64px rgba(0,0,0,0.4)" }}>
-                <h3 style={{ fontFamily: serif, fontSize: 28, fontWeight: 600, color: C.ink, margin: "0 0 6px" }}>Top Up Anytime</h3>
-                <div style={{ fontFamily: serif, fontSize: 46, fontWeight: 600, color: C.goldDeep, lineHeight: 1.1, margin: "10px 0 4px" }}>Buy credits</div>
-                <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 14, margin: "0 0 24px", color: C.inkSoft }}>secure Razorpay checkout · credit packs</p>
+                <h3 style={{ fontFamily: serif, fontSize: 29.5, fontWeight: 600, color: C.ink, margin: "0 0 6px" }}>Top Up Anytime</h3>
+                <div style={{ fontFamily: serif, fontSize: 47.5, fontWeight: 600, color: C.goldDeep, lineHeight: 1.1, margin: "10px 0 4px" }}>Buy credits</div>
+                <p style={{ fontFamily: sans, fontWeight: 300, fontSize: 15.5, margin: "0 0 24px", color: C.inkSoft }}>secure Razorpay checkout · credit packs</p>
                 <a href={STUDIO_APP_URL} className="k-gold-btn" style={{ ...goldBtn, width: "100%", justifyContent: "center", background: "linear-gradient(135deg,#13322F,#082A29)", color: C.cream }}>Go to Studio</a>
               </div>
             </Reveal>
           </div>
-          <Reveal style={{ marginTop: 26 }}><p style={{ ...body, fontSize: 14, textAlign: "center", maxWidth: 620, margin: "0 auto", color: C.creamMute }}>One credit = one generated image. Reels use a few credits each. Credits never expire — use them across all six tools.</p></Reveal>
+          <Reveal style={{ marginTop: 26 }}><p style={{ ...body, fontSize: 15.5, textAlign: "center", maxWidth: 620, margin: "0 auto", color: C.creamMute }}>One credit = one generated image. Reels use a few credits each. Credits never expire — use them across all six tools.</p></Reveal>
         </div>
       </section>
 
@@ -401,7 +400,7 @@ export default function StudioSite() {
           <Reveal>
             <Sparkle s={28} style={{ marginBottom: 4 }} />
             <h2 style={{ fontFamily: serif, fontWeight: 500, color: C.cream, fontSize: "clamp(36px,5.2vw,60px)", lineHeight: 1.06, margin: "18px 0 16px" }}>Your next campaign is <span style={{ fontStyle: "italic", color: C.gold }}>one login away.</span></h2>
-            <p style={{ fontFamily: sans, fontWeight: 300, color: C.creamSoft, fontSize: 16.5, letterSpacing: "0.02em", marginBottom: 38 }}>Sign in with Google • 3 free credits • Start creating in under a minute.</p>
+            <p style={{ fontFamily: sans, fontWeight: 300, color: C.creamSoft, fontSize: 18, letterSpacing: "0.02em", marginBottom: 38 }}>Sign in with Google • 3 free credits • Start creating in under a minute.</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 16, justifyContent: "center" }}>
               <a href={STUDIO_APP_URL} className="k-gold-btn" style={{ ...goldBtn, padding: "16px 42px", fontSize: 14 }} onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>Login &amp; Start Free</a>
             </div>
@@ -424,14 +423,14 @@ export default function StudioSite() {
               <Reveal key={t} delay={i * 90}>
                 <div style={{ background: `linear-gradient(160deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 6, padding: "30px 26px", height: "100%", boxShadow: "0 18px 40px rgba(0,0,0,0.25)" }}>
                   <div style={{ width: 32, height: 1.5, background: goldGrad, marginBottom: 18 }} />
-                  <h3 style={{ fontFamily: serif, fontSize: 24, fontWeight: 600, color: C.cream, margin: "0 0 12px", lineHeight: 1.2 }}>{t}</h3>
-                  <p style={{ ...body, fontSize: 15, lineHeight: 1.7, margin: 0 }}>{d}</p>
+                  <h3 style={{ fontFamily: serif, fontSize: 25.5, fontWeight: 600, color: C.cream, margin: "0 0 12px", lineHeight: 1.2 }}>{t}</h3>
+                  <p style={{ ...body, fontSize: 16.5, lineHeight: 1.7, margin: 0 }}>{d}</p>
                 </div>
               </Reveal>
             ))}
           </div>
           <Reveal style={{ textAlign: "center", marginTop: 34 }}>
-            <a href={FULL_SUITE_URL} style={{ fontFamily: sans, fontSize: 14, fontWeight: 500, letterSpacing: "0.06em", color: C.gold, textDecoration: "none", border: `1px solid ${C.gold}`, borderRadius: 2, padding: "13px 30px", display: "inline-flex", alignItems: "center", textTransform: "uppercase" }} onMouseEnter={(e) => { e.currentTarget.style.background = C.gold; e.currentTarget.style.color = C.tealDark; }} onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.gold; }}>Explore the full Swarnix Inventory + WhatsApp suite →</a>
+            <a href={FULL_SUITE_URL} style={{ fontFamily: sans, fontSize: 15.5, fontWeight: 500, letterSpacing: "0.06em", color: C.gold, textDecoration: "none", border: `1px solid ${C.gold}`, borderRadius: 2, padding: "13px 30px", display: "inline-flex", alignItems: "center", textTransform: "uppercase" }} onMouseEnter={(e) => { e.currentTarget.style.background = C.gold; e.currentTarget.style.color = C.tealDark; }} onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.gold; }}>Explore the full Swarnix Inventory + WhatsApp suite →</a>
           </Reveal>
         </div>
       </section>
@@ -442,13 +441,13 @@ export default function StudioSite() {
           <Hairline w={72} />
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, margin: "26px 0 14px" }}>
             <LogoLight h={70} />
-            <span style={{ fontFamily: serif, fontSize: 20, fontWeight: 500, color: C.gold, fontStyle: "italic" }}>Studio</span>
+            <span style={{ fontFamily: serif, fontSize: 21.5, fontWeight: 500, color: C.gold, fontStyle: "italic" }}>Studio</span>
           </div>
-          <p style={{ fontFamily: sans, fontSize: 14.5, fontWeight: 300, color: C.creamMute, lineHeight: 1.9, margin: 0 }}>
+          <p style={{ fontFamily: sans, fontSize: 16, fontWeight: 300, color: C.creamMute, lineHeight: 1.9, margin: 0 }}>
             Nelishka AI Solutions &nbsp;•&nbsp; Mumbai, India<br />
             <a href="https://www.nelishkaai.in" target="_blank" rel="noopener noreferrer" style={{ color: C.creamMute, textDecoration: "none" }}>www.nelishkaai.in</a>
           </p>
-          <p style={{ fontFamily: sans, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: C.gold, marginTop: 22 }}>Swarnix Studio</p>
+          <p style={{ fontFamily: sans, fontSize: 12.5, letterSpacing: "0.22em", textTransform: "uppercase", color: C.gold, marginTop: 22 }}>Swarnix Studio</p>
         </div>
       </footer>
 
