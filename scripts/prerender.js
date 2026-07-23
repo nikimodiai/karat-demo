@@ -35,21 +35,33 @@ async function main() {
   const server = serveStatic();
   await new Promise((resolve) => server.listen(PORT, resolve));
 
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto(`http://localhost:${PORT}/`, { waitUntil: "networkidle0" });
+  let browser;
+  try {
+    browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(`http://localhost:${PORT}/`, { waitUntil: "networkidle0" });
 
-  // app fetches /pricing.json on mount; give it a moment to render
-  await page.waitForSelector("#root *", { timeout: 10000 });
-  await new Promise((r) => setTimeout(r, 500));
+    // app fetches /pricing.json on mount; give it a moment to render
+    await page.waitForSelector("#root *", { timeout: 10000 });
+    await new Promise((r) => setTimeout(r, 500));
 
-  const html = await page.content();
+    const html = await page.content();
 
-  await browser.close();
-  server.close();
-
-  fs.writeFileSync(path.join(DIST, "index.html"), html);
-  console.log("[swarnix] prerendered dist/index.html");
+    fs.writeFileSync(path.join(DIST, "index.html"), html);
+    console.log("[swarnix] prerendered dist/index.html");
+  } catch (err) {
+    // Prerender is a progressive enhancement for crawlers. If headless Chrome
+    // can't launch (e.g. the Vercel build image lacks its shared libraries),
+    // skip it and ship the SPA shell — the site still works for real users.
+    console.warn(
+      "[swarnix] prerender skipped — headless Chrome unavailable; " +
+        "shipping the SPA shell instead.\n" +
+        `  reason: ${err && err.message ? err.message.split("\n")[0] : err}`
+    );
+  } finally {
+    if (browser) await browser.close().catch(() => {});
+    server.close();
+  }
 }
 
 main();
