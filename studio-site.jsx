@@ -202,6 +202,14 @@ export default function StudioSite() {
                 </h1>
               </Reveal>
               <Reveal delay={240}><p style={{ ...body, fontSize: 18.5, maxWidth: 520, marginTop: 22 }}>Turn plain counter photos into clean studio shots, AI-model campaigns, metal swaps, reels and fresh designs. No lightbox, no photographer, no studio.</p></Reveal>
+              <Reveal delay={320}>
+                <div style={{ display: "inline-flex", flexWrap: "wrap", alignItems: "center", gap: "8px 14px", marginTop: 20, padding: "10px 16px", borderRadius: 4, background: "rgba(216,189,126,0.12)", border: `1px solid ${C.tealLine}` }}>
+                  <span style={{ fontFamily: serif, fontSize: 20, fontWeight: 700, color: C.goldBright }}>₹10<span style={{ fontFamily: sans, fontSize: 13, fontWeight: 400, color: C.creamSoft }}> / studio image</span></span>
+                  <span style={{ color: C.gold }}>◆</span>
+                  <span style={{ fontFamily: serif, fontSize: 20, fontWeight: 700, color: C.goldBright }}>Reels from ₹20</span>
+                  <span style={{ display: "block", width: "100%", fontFamily: sans, fontSize: 12.5, fontWeight: 300, color: C.creamMute, marginTop: 2 }}>An image costs the same as one colour printout.</span>
+                </div>
+              </Reveal>
               <Reveal delay={360}>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginTop: 36 }}>
                   <a href={STUDIO_APP_URL} className="k-gold-btn" style={goldBtn} onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>Login &amp; Start with 3 Free Credits</a>
@@ -222,6 +230,28 @@ export default function StudioSite() {
                 <div style={{ position: "absolute", top: 14, left: 14, background: "rgba(6,31,30,0.72)", backdropFilter: "blur(6px)", border: `1px solid ${C.tealLine}`, borderRadius: 3, padding: "6px 12px", fontFamily: sans, fontSize: 11, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: C.gold }}>Made with Swarnix Studio</div>
               </div>
             </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* PRICE HIGHLIGHT — right under the hero */}
+      <section style={{ padding: "0 0 8px", background: `linear-gradient(180deg, ${C.tealDeep} 0%, ${C.tealDeep} 100%)`, position: "relative", zIndex: 3 }}>
+        <div style={{ ...wrap, marginTop: -28 }}>
+          <div style={{ background: `linear-gradient(135deg, ${C.sandWarm} 0%, ${C.sand} 55%, ${C.sandDeep} 100%)`, borderRadius: 12, padding: "clamp(22px,3vw,30px) clamp(24px,4vw,44px)", boxShadow: "0 26px 60px rgba(0,0,0,0.45)", position: "relative", overflow: "hidden" }}>
+            <div aria-hidden="true" style={{ position: "absolute", top: 16, right: 22 }}><Sparkle s={18} /></div>
+            <div className="k-priceband" style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", gap: 28, alignItems: "center" }}>
+              <div style={{ textAlign: "right" }}>
+                <div style={{ fontFamily: sans, fontSize: 11.5, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: C.goldDeep, marginBottom: 8 }}>Studio Image</div>
+                <div style={{ fontFamily: serif, fontWeight: 700, color: C.ink, lineHeight: 1, fontSize: "clamp(34px,5vw,52px)" }}>₹10 <span style={{ fontSize: "0.42em", fontWeight: 500, color: C.inkSoft, letterSpacing: "0.02em" }}>per image</span></div>
+                <div style={{ fontFamily: sans, fontSize: 13.5, fontWeight: 400, color: C.inkSoft, marginTop: 8, lineHeight: 1.5 }}>The cost of a single colour printout — for a studio-quality photo.</div>
+              </div>
+              <div aria-hidden="true" className="k-priceband-div" style={{ width: 1, height: 78, background: "rgba(19,50,47,0.25)", justifySelf: "center" }} />
+              <div style={{ textAlign: "left" }}>
+                <div style={{ fontFamily: sans, fontSize: 11.5, fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: C.goldDeep, marginBottom: 8 }}>Reels</div>
+                <div style={{ fontFamily: serif, fontWeight: 700, color: C.ink, lineHeight: 1, fontSize: "clamp(34px,5vw,52px)" }}>from ₹20</div>
+                <div style={{ fontFamily: sans, fontSize: 13.5, fontWeight: 400, color: C.inkSoft, marginTop: 8, lineHeight: 1.5 }}>A short, shareable reel with motion and music — Instagram-ready.</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -462,6 +492,9 @@ export default function StudioSite() {
         @media(max-width:600px){
           .k-features{grid-template-columns:1fr!important;}
           .k-price2{grid-template-columns:1fr!important;}
+          .k-priceband{grid-template-columns:1fr!important;gap:20px!important;text-align:center!important;}
+          .k-priceband > div{text-align:center!important;}
+          .k-priceband-div{width:64px!important;height:1px!important;}
         }
       `}</style>
     </div>
