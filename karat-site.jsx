@@ -42,8 +42,11 @@ const grain = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg
 
 const LOGO_LIGHT = "/swarnix-logo.png";
 const LOGO_LIGHT_SM = "/swarnix-logo.png";
-const APP_URL = import.meta.env.VITE_APP_URL || "http://localhost:5174";
+// The full Inventory + WhatsApp suite app. This WhatsApp site's Login points here.
+// (The Studio homepage — see studio-site.jsx — uses VITE_APP_URL for studio.swarnixai.in.)
+const APP_URL = import.meta.env.VITE_FULL_APP_URL || "https://app.swarnixai.in";
 const WHATSAPP_DEMO_URL = "https://wa.me/917506407254?text=Hi%2C%20I%27d%20like%20to%20see%20the%20Swarnix%20demo";
+const STUDIO_HOME_URL = "#/"; // back to the Studio-first homepage
 
 const LogoLight = ({ h = 50 }) => <img src={LOGO_LIGHT} alt="Swarnix — The Private Digital Showroom for Jewellers" style={{ height: h, width: "auto", display: "block" }} />;
 const LogoLightSm = ({ h = 34 }) => <img src={LOGO_LIGHT_SM} alt="Swarnix" style={{ height: h, width: "auto", display: "block" }} />;
@@ -227,7 +230,7 @@ function JewelleryOrbit() {
 
 const NAV = [["Features", "features"], ["How It Works", "how"], ["Pricing", "pricing"], ["Why Now", "why"], ["Contact", "contact"]];
 
-export default function App() {
+export default function WhatsAppSite() {
   const [open, setOpen] = useState(false);
   const [demoOpen, setDemoOpen] = useState(false);
   const [demoPlan, setDemoPlan] = useState("");
@@ -273,6 +276,7 @@ export default function App() {
               <button key={id} onClick={() => go(id)} style={{ fontFamily: sans, fontSize: 13, fontWeight: 400, letterSpacing: "0.06em", color: C.creamSoft, background: "none", border: "none", cursor: "pointer", transition: "color .2s" }}
                 onMouseEnter={(e) => e.currentTarget.style.color = C.gold} onMouseLeave={(e) => e.currentTarget.style.color = C.creamSoft}>{t}</button>
             ))}
+            <a href={STUDIO_HOME_URL} style={{ fontFamily: sans, fontSize: 12.5, fontWeight: 400, letterSpacing: "0.04em", color: C.creamMute, textDecoration: "none", transition: "color .2s" }} onMouseEnter={(e) => e.currentTarget.style.color = C.gold} onMouseLeave={(e) => e.currentTarget.style.color = C.creamMute}>← Swarnix Studio</a>
             <button onClick={() => bookDemo()} className="k-gold-btn" style={goldBtn} onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-2px)"} onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}>Book a Free Demo</button>
             <a href={APP_URL} style={{ fontFamily: sans, fontSize: 13, fontWeight: 400, letterSpacing: "0.06em", color: C.creamSoft, textDecoration: "none", padding: "10px 0", transition: "color .2s" }} onMouseEnter={(e) => e.currentTarget.style.color = C.gold} onMouseLeave={(e) => e.currentTarget.style.color = C.creamSoft}>Login</a>
           </nav>
@@ -285,6 +289,7 @@ export default function App() {
             {NAV.map(([t, id]) => (<button key={id} onClick={() => go(id)} style={{ display: "block", width: "100%", textAlign: "left", padding: "13px 0", fontFamily: sans, fontSize: 16, color: C.cream, background: "none", border: "none", borderBottom: `1px solid ${C.tealLine}`, cursor: "pointer" }}>{t}</button>))}
             <button onClick={() => bookDemo()} className="k-gold-btn" style={{ ...goldBtn, width: "100%", marginTop: 18 }}>Book a Free Demo</button>
             <a href={APP_URL} style={{ display: "block", width: "100%", textAlign: "center", padding: "13px 0", marginTop: 10, fontFamily: sans, fontSize: 16, color: C.creamSoft, textDecoration: "none", border: `1px solid ${C.tealLine}`, borderRadius: 2 }}>Login</a>
+            <a href={STUDIO_HOME_URL} style={{ display: "block", width: "100%", textAlign: "center", padding: "13px 0", marginTop: 10, fontFamily: sans, fontSize: 14, color: C.creamMute, textDecoration: "none" }}>← Back to Swarnix Studio</a>
           </div>
         )}
       </header>
