@@ -107,14 +107,19 @@ const FEATURES = [
   { label: "Library", desc: "Every photo and video you've generated, saved privately in one place — download or reshare anytime.", media: { type: "image", src: "/previews/library.png" } },
 ];
 
-function FeatureMedia({ media, h = 230 }) {
+function FeatureMedia({ media }) {
+  // Show the whole image/video — no cropping. `contain` on a 4:3 stage keeps
+  // every tile the same height while displaying the full asset (letterboxed on
+  // a soft teal backdrop when the aspect ratio differs).
+  const stage = { width: "100%", aspectRatio: "4 / 3", background: `linear-gradient(160deg, ${C.tealDeep} 0%, ${C.tealDark} 100%)`, display: "block" };
+  const fit = { width: "100%", height: "100%", objectFit: "contain", display: "block" };
   if (media?.type === "video") {
-    return <video src={media.src} autoPlay loop muted playsInline style={{ width: "100%", height: h, objectFit: "cover", display: "block" }} />;
+    return <div style={stage}><video src={media.src} autoPlay loop muted playsInline style={fit} /></div>;
   }
-  return <img src={media.src} alt="" style={{ width: "100%", height: h, objectFit: "cover", display: "block" }} />;
+  return <div style={stage}><img src={media.src} alt="" style={fit} /></div>;
 }
 
-const NAV = [["Features", "features"], ["How It Works", "how"], ["Pricing", "pricing"]];
+const NAV = [["Features", "features"], ["Refer & Earn", "refer"], ["How It Works", "how"], ["Pricing", "pricing"]];
 
 export default function StudioSite() {
   const [open, setOpen] = useState(false);
@@ -212,8 +217,8 @@ export default function StudioSite() {
               </Reveal>
             </div>
             <Reveal delay={220}>
-              <div style={{ position: "relative", borderRadius: 10, overflow: "hidden", border: `1px solid ${C.tealLine}`, boxShadow: "0 30px 70px rgba(0,0,0,0.5)" }}>
-                <video src="/previews/swarnix-reel.mp4" autoPlay loop muted playsInline style={{ width: "100%", display: "block", aspectRatio: "4/5", objectFit: "cover" }} />
+              <div style={{ position: "relative", borderRadius: 10, overflow: "hidden", border: `1px solid ${C.tealLine}`, boxShadow: "0 30px 70px rgba(0,0,0,0.5)", background: `linear-gradient(160deg, ${C.tealDeep} 0%, ${C.tealDark} 100%)` }}>
+                <video src="/previews/swarnix-reel.mp4" autoPlay loop muted playsInline style={{ width: "100%", display: "block", maxHeight: 560, objectFit: "contain" }} />
                 <div style={{ position: "absolute", top: 14, left: 14, background: "rgba(6,31,30,0.72)", backdropFilter: "blur(6px)", border: `1px solid ${C.tealLine}`, borderRadius: 3, padding: "6px 12px", fontFamily: sans, fontSize: 11, fontWeight: 500, letterSpacing: "0.16em", textTransform: "uppercase", color: C.gold }}>Made with Swarnix Studio</div>
               </div>
             </Reveal>
@@ -257,7 +262,7 @@ export default function StudioSite() {
             {FEATURES.map((ft, i) => (
               <Reveal key={ft.label} delay={(i % 3) * 90}>
                 <div style={{ background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 8, overflow: "hidden", height: "100%", boxShadow: "0 20px 46px rgba(0,0,0,0.26)", display: "flex", flexDirection: "column" }}>
-                  <FeatureMedia media={ft.media} h={220} />
+                  <FeatureMedia media={ft.media} />
                   <div style={{ padding: "22px 24px 26px" }}>
                     <h3 style={{ fontFamily: serif, fontSize: 25, fontWeight: 600, color: C.gold, margin: "0 0 10px" }}>{ft.label}</h3>
                     <p style={{ ...body, fontSize: 14.5, lineHeight: 1.65, margin: 0 }}>{ft.desc}</p>
@@ -269,8 +274,44 @@ export default function StudioSite() {
         </div>
       </section>
 
+      {/* REFER & EARN — prominent growth band */}
+      <section id="refer" style={{ padding: "56px 0", background: C.tealDeep, position: "relative", overflow: "hidden" }}>
+        <div aria-hidden="true" style={{ position: "absolute", top: -140, right: -140, width: 460, height: 460, borderRadius: "50%", background: "radial-gradient(circle, rgba(216,189,126,0.14) 0%, transparent 65%)", filter: "blur(10px)", zIndex: 0 }} />
+        <div style={{ ...wrap, position: "relative", zIndex: 2 }}>
+          <Reveal>
+            <div style={{ background: `linear-gradient(135deg, ${C.sandWarm} 0%, ${C.sand} 55%, ${C.sandDeep} 100%)`, borderRadius: 12, padding: "clamp(30px,5vw,52px)", boxShadow: "0 30px 70px rgba(0,0,0,0.4)", position: "relative", overflow: "hidden" }}>
+              <div aria-hidden="true" style={{ position: "absolute", top: 20, right: 26 }}><Sparkle s={22} /></div>
+              <div className="k-refer" style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 40, alignItems: "center" }}>
+                <div>
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: sans, fontSize: 11.5, fontWeight: 600, letterSpacing: "0.3em", textTransform: "uppercase", color: C.goldDeep, marginBottom: 16 }}>
+                    <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.goldDeep }} />Refer &amp; Earn
+                  </div>
+                  <h2 style={{ fontFamily: serif, fontWeight: 600, color: C.ink, lineHeight: 1.05, fontSize: "clamp(30px,4.4vw,52px)", letterSpacing: "-0.01em", margin: "0 0 14px" }}>Invite a jeweller — <span style={{ fontStyle: "italic", color: C.goldDeep }}>you both get 10 free credits.</span></h2>
+                  <p style={{ fontFamily: sans, fontWeight: 300, color: C.inkSoft, lineHeight: 1.75, fontSize: 16.5, margin: "0 0 26px", maxWidth: 520 }}>Share your referral link with a fellow jeweller. When they make their first purchase, ten credits land in each of your accounts — enough for a full set of studio photos or a reel, on the house.</p>
+                  <a href={STUDIO_APP_URL} className="k-gold-btn" style={{ fontFamily: sans, fontSize: 13, fontWeight: 600, letterSpacing: "0.1em", color: C.cream, background: "linear-gradient(135deg,#13322F,#082A29)", border: "none", borderRadius: 3, padding: "15px 34px", cursor: "pointer", textTransform: "uppercase", boxShadow: "0 12px 30px rgba(6,31,30,0.35)", textDecoration: "none", display: "inline-flex", alignItems: "center" }}>Get Your Referral Link</a>
+                </div>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                    {[["You", "+10"], ["Them", "+10"]].map(([who, amt], i) => (
+                      <React.Fragment key={who}>
+                        {i === 1 && <div style={{ fontFamily: serif, fontSize: 34, color: C.goldDeep, padding: "0 6px" }}>+</div>}
+                        <div style={{ width: 128, height: 128, borderRadius: "50%", background: C.tealDark, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", boxShadow: "0 16px 40px rgba(6,31,30,0.4)", border: `2px solid ${C.goldBright}` }}>
+                          <div style={{ fontFamily: serif, fontSize: 40, fontWeight: 700, color: C.goldBright, lineHeight: 1 }}>{amt}</div>
+                          <div style={{ fontFamily: sans, fontSize: 11, fontWeight: 500, letterSpacing: "0.18em", textTransform: "uppercase", color: C.creamMute, marginTop: 6 }}>{who}</div>
+                          <div style={{ fontFamily: sans, fontSize: 9.5, letterSpacing: "0.16em", textTransform: "uppercase", color: C.creamMute, marginTop: 2 }}>Credits</div>
+                        </div>
+                      </React.Fragment>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* HOW IT WORKS */}
-      <section id="how" style={{ padding: "56px 0", background: C.tealDeep }}>
+      <section id="how" style={{ padding: "56px 0", background: C.teal }}>
         <div style={wrap}>
           <Reveal style={{ textAlign: "center", maxWidth: 700, margin: "0 auto 40px" }}>
             <Label>How It Works</Label>
@@ -338,14 +379,36 @@ export default function StudioSite() {
         </div>
       </section>
 
+      {/* MORE IN THE FULL SUITE — WhatsApp catalog, posters, gold rate */}
+      <section style={{ padding: "56px 0", background: C.tealDeep, position: "relative" }}>
+        <div style={wrap}>
+          <Reveal style={{ textAlign: "center", maxWidth: 720, margin: "0 auto 36px" }}>
+            <Label>Beyond Studio — The Full Swarnix Suite</Label>
+            <h2 style={{ ...h2, margin: "18px 0 14px" }}>Run the whole shop, <span style={{ fontStyle: "italic", color: C.gold }}>not just the photos.</span></h2>
+            <p style={{ ...body, maxWidth: 620, margin: "0 auto" }}>Studio is one part of Swarnix. The complete suite adds a WhatsApp AI sales agent, live inventory and everyday marketing your shop can send in a tap.</p>
+          </Reveal>
+          <div className="k-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 22 }}>
+            {[["WhatsApp Catalog", "Your live stock — with weights, purity and prices — sent to customers on WhatsApp, always up to date with the metal rate."],
+            ["Festival Posters", "Ready-made, on-brand posters for every festival and occasion — personalised with your shop name and pieces, ready to post."],
+            ["Daily Gold Rate Sharing", "Share the day's gold and silver rates with your customers automatically, in a clean branded card — no manual updates."]].map(([t, d], i) => (
+              <Reveal key={t} delay={i * 90}>
+                <div style={{ background: `linear-gradient(160deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 6, padding: "30px 26px", height: "100%", boxShadow: "0 18px 40px rgba(0,0,0,0.25)" }}>
+                  <div style={{ width: 32, height: 1.5, background: goldGrad, marginBottom: 18 }} />
+                  <h3 style={{ fontFamily: serif, fontSize: 24, fontWeight: 600, color: C.cream, margin: "0 0 12px", lineHeight: 1.2 }}>{t}</h3>
+                  <p style={{ ...body, fontSize: 15, lineHeight: 1.7, margin: 0 }}>{d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal style={{ textAlign: "center", marginTop: 34 }}>
+            <a href={FULL_SUITE_URL} style={{ fontFamily: sans, fontSize: 14, fontWeight: 500, letterSpacing: "0.06em", color: C.gold, textDecoration: "none", border: `1px solid ${C.gold}`, borderRadius: 2, padding: "13px 30px", display: "inline-flex", alignItems: "center", textTransform: "uppercase" }} onMouseEnter={(e) => { e.currentTarget.style.background = C.gold; e.currentTarget.style.color = C.tealDark; }} onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.gold; }}>Explore the full Swarnix Inventory + WhatsApp suite →</a>
+          </Reveal>
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer style={{ background: C.tealDark, padding: "50px 0 42px", borderTop: `1px solid ${C.tealLine}` }}>
         <div style={{ ...wrap, textAlign: "center" }}>
-          {/* Discreet link to the full Inventory + WhatsApp suite */}
-          <div style={{ background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 8, padding: "26px 28px", maxWidth: 640, margin: "0 auto 40px" }}>
-            <p style={{ fontFamily: sans, fontSize: 13.5, fontWeight: 300, color: C.creamSoft, margin: "0 0 6px", lineHeight: 1.7 }}>Also run inventory and want an AI sales agent on WhatsApp?</p>
-            <a href={FULL_SUITE_URL} style={{ fontFamily: sans, fontSize: 14, fontWeight: 500, letterSpacing: "0.04em", color: C.gold, textDecoration: "none" }} onMouseEnter={(e) => e.currentTarget.style.textDecoration = "underline"} onMouseLeave={(e) => e.currentTarget.style.textDecoration = "none"}>Explore the full Swarnix Inventory + WhatsApp suite →</a>
-          </div>
           <Hairline w={72} />
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, margin: "26px 0 14px" }}>
             <LogoLight h={70} />
@@ -393,6 +456,8 @@ export default function StudioSite() {
           .k-hero-grid{grid-template-columns:1fr!important;gap:40px!important;}
           .k-features{grid-template-columns:1fr 1fr!important;}
           .k-grid-3{grid-template-columns:1fr!important;}
+          .k-refer{grid-template-columns:1fr!important;gap:32px!important;text-align:center;}
+          .k-refer > div:first-child p{margin-left:auto!important;margin-right:auto!important;}
         }
         @media(max-width:600px){
           .k-features{grid-template-columns:1fr!important;}
