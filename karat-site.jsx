@@ -43,7 +43,7 @@ const grain = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg
 const LOGO_LIGHT = "/swarnix-logo.png";
 const LOGO_LIGHT_SM = "/swarnix-logo.png";
 // The full Inventory + WhatsApp suite app. This WhatsApp site's Login points here.
-// (The Studio homepage — see studio-site.jsx — uses VITE_APP_URL for studio.swarnixai.in.)
+// (The Studio homepage — see studio-site.jsx — uses VITE_STUDIO_APP_URL for studio.swarnixai.in.)
 const APP_URL = import.meta.env.VITE_FULL_APP_URL || "https://app.swarnixai.in";
 const WHATSAPP_DEMO_URL = "https://wa.me/917506407254?text=Hi%2C%20I%27d%20like%20to%20see%20the%20Swarnix%20demo";
 const STUDIO_HOME_URL = "#/"; // back to the Studio-first homepage

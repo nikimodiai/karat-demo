@@ -41,7 +41,10 @@ const grain = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg
 const LOGO_LIGHT = "/swarnix-logo.png";
 
 // Studio login → the standalone studio-web on studio.swarnixai.in.
-const STUDIO_APP_URL = import.meta.env.VITE_APP_URL || "https://studio.swarnixai.in";
+// Uses its OWN env var so it never collides with the WhatsApp site's
+// VITE_APP_URL / VITE_FULL_APP_URL. The fallback is the real Studio URL, so
+// the login works correctly even if no env var is set in the host.
+const STUDIO_APP_URL = import.meta.env.VITE_STUDIO_APP_URL || "https://studio.swarnixai.in";
 // Discreet link to the full Inventory + WhatsApp suite marketing page.
 const FULL_SUITE_URL = "#/whatsapp";
 
