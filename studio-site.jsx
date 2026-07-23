@@ -38,7 +38,7 @@ const goldGrad = "linear-gradient(135deg,#DFB48A 0%,#C8956C 45%,#A0643C 100%)";
 
 const grain = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E\")";
 
-const LOGO_LIGHT = "/swarnix-logo.png";
+const LOGO_LIGHT = "/swarnix-studio-logo-sm.png";
 
 // Studio login → the standalone studio-web on studio.swarnixai.in.
 // Uses its OWN env var so it never collides with the WhatsApp site's
@@ -48,7 +48,9 @@ const STUDIO_APP_URL = import.meta.env.VITE_STUDIO_APP_URL || "https://studio.sw
 // Discreet link to the full Inventory + WhatsApp suite marketing page.
 const FULL_SUITE_URL = "#/whatsapp";
 
-const LogoLight = ({ h = 50 }) => <img src={LOGO_LIGHT} alt="Swarnix Studio" style={{ height: h, width: "auto", display: "block" }} />;
+// The logo PNG has a solid dark background; rounded corners + a hairline make
+// it read as an intentional badge against the teal page.
+const LogoLight = ({ h = 50 }) => <img src={LOGO_LIGHT} alt="Swarnix Studio" style={{ height: h, width: "auto", display: "block", borderRadius: 8, border: `1px solid ${C.tealLine}` }} />;
 
 // ─── Scroll reveal ──────────────────────────────────────────────────────
 function useReveal() {
@@ -108,15 +110,16 @@ const FEATURES = [
 ];
 
 function FeatureMedia({ media }) {
-  // Show the whole image/video — no cropping. `contain` on a 4:3 stage keeps
-  // every tile the same height while displaying the full asset (letterboxed on
+  // Images: show the whole asset — no cropping. `contain` on a 4:3 stage keeps
+  // every tile the same height while displaying the full image (letterboxed on
   // a soft teal backdrop when the aspect ratio differs).
-  const stage = { width: "100%", aspectRatio: "4 / 3", background: `linear-gradient(160deg, ${C.tealDeep} 0%, ${C.tealDark} 100%)`, display: "block" };
-  const fit = { width: "100%", height: "100%", objectFit: "contain", display: "block" };
+  // Video (the portrait reel): anchor to the top and trim the excess from the
+  // bottom, so the tile isn't dominated by letterbox bars.
+  const stage = { width: "100%", aspectRatio: "4 / 3", background: `linear-gradient(160deg, ${C.tealDeep} 0%, ${C.tealDark} 100%)`, display: "block", overflow: "hidden" };
   if (media?.type === "video") {
-    return <div style={stage}><video src={media.src} autoPlay loop muted playsInline style={fit} /></div>;
+    return <div style={stage}><video src={media.src} autoPlay loop muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }} /></div>;
   }
-  return <div style={stage}><img src={media.src} alt="" style={fit} /></div>;
+  return <div style={stage}><img src={media.src} alt="" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} /></div>;
 }
 
 const NAV = [["Features", "features"], ["Refer & Earn", "refer"], ["How It Works", "how"], ["Pricing", "pricing"]];
@@ -160,9 +163,8 @@ export default function StudioSite() {
         borderBottom: scrolled ? `1px solid ${C.tealLine}` : "1px solid transparent", transition: "all .4s ease"
       }}>
         <div style={{ ...wrap, display: "flex", alignItems: "center", justifyContent: "space-between", height: 118 }}>
-          <button onClick={() => go("top")} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center", gap: 12 }}>
-            <LogoLight h={104} />
-            <span style={{ fontFamily: serif, fontSize: 27.5, fontWeight: 500, color: C.gold, fontStyle: "italic", letterSpacing: "0.01em" }}>Studio</span>
+          <button onClick={() => go("top")} style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center" }}>
+            <LogoLight h={96} />
           </button>
           <nav className="k-desk" style={{ display: "flex", alignItems: "center", gap: 30 }}>
             {NAV.map(([t, id]) => (
@@ -251,6 +253,9 @@ export default function StudioSite() {
                 <div style={{ fontFamily: sans, fontSize: 15, fontWeight: 400, color: C.inkSoft, marginTop: 8, lineHeight: 1.5 }}>A short, shareable reel with motion and music — Instagram-ready.</div>
               </div>
             </div>
+            <div style={{ textAlign: "center", marginTop: 16, paddingTop: 14, borderTop: "1px solid rgba(19,50,47,0.18)", fontFamily: sans, fontSize: 14, fontWeight: 400, color: C.inkSoft, lineHeight: 1.6 }}>
+              Prices at the 100-credit pack &nbsp;•&nbsp; Your <b>3 free credits</b> on sign-up make <b>3 studio photos</b> or an <b>8-second reel</b>.
+            </div>
           </div>
         </div>
       </section>
@@ -296,6 +301,25 @@ export default function StudioSite() {
                     <h3 style={{ fontFamily: serif, fontSize: 26.5, fontWeight: 600, color: C.gold, margin: "0 0 10px" }}>{ft.label}</h3>
                     <p style={{ ...body, fontSize: 16, lineHeight: 1.65, margin: 0 }}>{ft.desc}</p>
                   </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          {/* Also in Studio — everyday marketing tools */}
+          <Reveal style={{ marginTop: 44 }}>
+            <div style={{ textAlign: "center", marginBottom: 26 }}>
+              <p style={{ fontFamily: serif, fontSize: 27, fontWeight: 600, color: C.cream, margin: 0 }}>And in the same login — <span style={{ fontStyle: "italic", color: C.gold }}>your everyday marketing.</span></p>
+            </div>
+          </Reveal>
+          <div className="k-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 22 }}>
+            {[["WhatsApp Catalog", "Your live stock — with weights, purity and prices — sent to customers on WhatsApp, always up to date with the metal rate."],
+            ["Festival Posters", "Ready-made, on-brand posters for every festival and occasion — personalised with your shop name and pieces, ready to post."],
+            ["Daily Gold Rate Sharing", "Share the day's gold and silver rates with your customers in a clean branded card — no manual updates."]].map(([t, d], i) => (
+              <Reveal key={t} delay={i * 90}>
+                <div style={{ background: `linear-gradient(160deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 6, padding: "30px 26px", height: "100%", boxShadow: "0 18px 40px rgba(0,0,0,0.25)" }}>
+                  <div style={{ width: 32, height: 1.5, background: goldGrad, marginBottom: 18 }} />
+                  <h3 style={{ fontFamily: serif, fontSize: 25.5, fontWeight: 600, color: C.cream, margin: "0 0 12px", lineHeight: 1.2 }}>{t}</h3>
+                  <p style={{ ...body, fontSize: 16, lineHeight: 1.7, margin: 0 }}>{d}</p>
                 </div>
               </Reveal>
             ))}
@@ -376,7 +400,7 @@ export default function StudioSite() {
               <div style={{ background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 8, padding: "36px 30px", height: "100%", textAlign: "center", boxShadow: "0 18px 40px rgba(0,0,0,0.22)" }}>
                 <h3 style={{ fontFamily: serif, fontSize: 29.5, fontWeight: 600, color: C.cream, margin: "0 0 6px" }}>Start Free</h3>
                 <div style={{ fontFamily: serif, fontSize: 47.5, fontWeight: 600, color: C.gold, lineHeight: 1.1, margin: "10px 0 4px" }}>3 credits</div>
-                <p style={{ ...body, fontSize: 15.5, margin: "0 0 24px", color: C.creamMute }}>free on sign-up · no card needed</p>
+                <p style={{ ...body, fontSize: 15.5, margin: "0 0 24px", color: C.creamMute }}>free on sign-up · no card needed<br />makes 3 studio photos or an 8-second reel</p>
                 <a href={STUDIO_APP_URL} className="k-gold-btn" style={{ ...goldBtn, width: "100%", justifyContent: "center" }}>Sign in with Google</a>
               </div>
             </Reveal>
@@ -389,7 +413,7 @@ export default function StudioSite() {
               </div>
             </Reveal>
           </div>
-          <Reveal style={{ marginTop: 26 }}><p style={{ ...body, fontSize: 15.5, textAlign: "center", maxWidth: 620, margin: "0 auto", color: C.creamMute }}>One credit = one generated image. Reels use a few credits each. Credits never expire — use them across all six tools.</p></Reveal>
+          <Reveal style={{ marginTop: 26 }}><p style={{ ...body, fontSize: 15.5, textAlign: "center", maxWidth: 680, margin: "0 auto", color: C.creamMute }}>One credit = one generated image. Reels use a few credits each. Credits never expire — use them across all six tools. ₹10/image and reels from ₹20 apply at the 100-credit pack.</p></Reveal>
         </div>
       </section>
 
@@ -408,29 +432,30 @@ export default function StudioSite() {
         </div>
       </section>
 
-      {/* MORE IN THE FULL SUITE — WhatsApp catalog, posters, gold rate */}
+      {/* THE FULL SWARNIX WHATSAPP SUITE */}
       <section style={{ padding: "56px 0", background: C.tealDeep, position: "relative" }}>
         <div style={wrap}>
           <Reveal style={{ textAlign: "center", maxWidth: 720, margin: "0 auto 36px" }}>
-            <Label>Beyond Studio — The Full Swarnix Suite</Label>
+            <Label>Beyond Studio — The Swarnix WhatsApp Suite</Label>
             <h2 style={{ ...h2, margin: "18px 0 14px" }}>Run the whole shop, <span style={{ fontStyle: "italic", color: C.gold }}>not just the photos.</span></h2>
-            <p style={{ ...body, maxWidth: 620, margin: "0 auto" }}>Studio is one part of Swarnix. The complete suite adds a WhatsApp AI sales agent, live inventory and everyday marketing your shop can send in a tap.</p>
+            <p style={{ ...body, maxWidth: 620, margin: "0 auto" }}>Studio is one part of Swarnix. The complete suite puts an AI salesperson on your WhatsApp, backed by your live inventory and an online storefront.</p>
           </Reveal>
-          <div className="k-grid-3" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 22 }}>
-            {[["WhatsApp Catalog", "Your live stock — with weights, purity and prices — sent to customers on WhatsApp, always up to date with the metal rate."],
-            ["Festival Posters", "Ready-made, on-brand posters for every festival and occasion — personalised with your shop name and pieces, ready to post."],
-            ["Daily Gold Rate Sharing", "Share the day's gold and silver rates with your customers automatically, in a clean branded card — no manual updates."]].map(([t, d], i) => (
+          <div className="k-grid-4" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 22 }}>
+            {[["WhatsApp AI Agent", "A 24/7 AI salesperson on your shop's WhatsApp — answers rates, stock and availability in your customer's own language, day and night."],
+            ["Smart Inventory + Dynamic Gold Pricing", "Your complete stock — weight, purity, images and categories — with prices that update automatically with the daily gold rate."],
+            ["Selfie Try-On", "Customers try your jewellery on their own selfie, right inside WhatsApp — and fall in love before they visit the shop."],
+            ["Online Website", "Your own online storefront showing your live catalogue — share one link and let customers browse your collection anytime."]].map(([t, d], i) => (
               <Reveal key={t} delay={i * 90}>
                 <div style={{ background: `linear-gradient(160deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 6, padding: "30px 26px", height: "100%", boxShadow: "0 18px 40px rgba(0,0,0,0.25)" }}>
                   <div style={{ width: 32, height: 1.5, background: goldGrad, marginBottom: 18 }} />
-                  <h3 style={{ fontFamily: serif, fontSize: 25.5, fontWeight: 600, color: C.cream, margin: "0 0 12px", lineHeight: 1.2 }}>{t}</h3>
-                  <p style={{ ...body, fontSize: 16.5, lineHeight: 1.7, margin: 0 }}>{d}</p>
+                  <h3 style={{ fontFamily: serif, fontSize: 24, fontWeight: 600, color: C.cream, margin: "0 0 12px", lineHeight: 1.2 }}>{t}</h3>
+                  <p style={{ ...body, fontSize: 15.5, lineHeight: 1.7, margin: 0 }}>{d}</p>
                 </div>
               </Reveal>
             ))}
           </div>
           <Reveal style={{ textAlign: "center", marginTop: 34 }}>
-            <a href={FULL_SUITE_URL} style={{ fontFamily: sans, fontSize: 15.5, fontWeight: 500, letterSpacing: "0.06em", color: C.gold, textDecoration: "none", border: `1px solid ${C.gold}`, borderRadius: 2, padding: "13px 30px", display: "inline-flex", alignItems: "center", textTransform: "uppercase" }} onMouseEnter={(e) => { e.currentTarget.style.background = C.gold; e.currentTarget.style.color = C.tealDark; }} onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.gold; }}>Explore the full Swarnix Inventory + WhatsApp suite →</a>
+            <a href={FULL_SUITE_URL} style={{ fontFamily: sans, fontSize: 15.5, fontWeight: 500, letterSpacing: "0.06em", color: C.gold, textDecoration: "none", border: `1px solid ${C.gold}`, borderRadius: 2, padding: "13px 30px", display: "inline-flex", alignItems: "center", textTransform: "uppercase" }} onMouseEnter={(e) => { e.currentTarget.style.background = C.gold; e.currentTarget.style.color = C.tealDark; }} onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = C.gold; }}>Explore the Swarnix WhatsApp Suite →</a>
           </Reveal>
         </div>
       </section>
@@ -439,9 +464,8 @@ export default function StudioSite() {
       <footer style={{ background: C.tealDark, padding: "50px 0 42px", borderTop: `1px solid ${C.tealLine}` }}>
         <div style={{ ...wrap, textAlign: "center" }}>
           <Hairline w={72} />
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, margin: "26px 0 14px" }}>
-            <LogoLight h={70} />
-            <span style={{ fontFamily: serif, fontSize: 21.5, fontWeight: 500, color: C.gold, fontStyle: "italic" }}>Studio</span>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", margin: "26px 0 14px" }}>
+            <LogoLight h={110} />
           </div>
           <p style={{ fontFamily: sans, fontSize: 16, fontWeight: 300, color: C.creamMute, lineHeight: 1.9, margin: 0 }}>
             Nelishka AI Solutions &nbsp;•&nbsp; Mumbai, India<br />
@@ -485,11 +509,13 @@ export default function StudioSite() {
           .k-hero-grid{grid-template-columns:1fr!important;gap:40px!important;}
           .k-features{grid-template-columns:1fr 1fr!important;}
           .k-grid-3{grid-template-columns:1fr!important;}
+          .k-grid-4{grid-template-columns:1fr 1fr!important;}
           .k-refer{grid-template-columns:1fr!important;gap:32px!important;text-align:center;}
           .k-refer > div:first-child p{margin-left:auto!important;margin-right:auto!important;}
         }
         @media(max-width:600px){
           .k-features{grid-template-columns:1fr!important;}
+          .k-grid-4{grid-template-columns:1fr!important;}
           .k-price2{grid-template-columns:1fr!important;}
           .k-priceband{grid-template-columns:1fr!important;gap:20px!important;text-align:center!important;}
           .k-priceband > div{text-align:center!important;}
