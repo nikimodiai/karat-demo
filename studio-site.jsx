@@ -103,29 +103,60 @@ const Label = ({ children, style = {} }) => (
 const FEATURES = [
   { label: "Studio Photo", desc: "Turn a plain counter photo into a clean, studio-lit product shot — no lightbox, no photographer.", media: { type: "image", src: "/previews/studio-photo.jpg" } },
   { label: "Metal Swap", desc: "Recolour a piece into yellow, white or rose gold instantly — show every variant without re-shooting.", media: { type: "image", src: "/previews/metal-swap.jpg" } },
-  { label: "AI Model", desc: "Put your jewellery on a photorealistic model, ready to post — no shoot, no model booking.", media: { type: "image", src: "/previews/ai-models.jpg" } },
+  { label: "AI Model", desc: "Put your jewellery on a photorealistic model, ready to post — no shoot, no model booking.", media: { type: "image", src: "/previews/ai-models.jpg", tall: true } },
   { label: "Jewellery Design", desc: "Describe a piece or upload a reference and generate a photorealistic render before you make it.", media: { type: "image", src: "/previews/design.jpg" } },
-  { label: "Generate Reels", desc: "Turn your photos into a short, shareable video with motion and music — Instagram-ready in a tap.", media: { type: "video", src: "/previews/swarnix-reel.mp4" } },
-  { label: "Library", desc: "Every photo and video you've generated, saved privately in one place — download or reshare anytime.", media: { type: "image", src: "/previews/library.png" } },
+  { label: "Generate Reels", desc: "Turn your photos into a short, shareable video with motion and music — Instagram-ready in a tap.", media: { type: "video", src: "/previews/swarnix-reel.mp4", tall: true } },
+  { label: "Library", desc: "Every photo and video you've generated, saved privately in one place — download or reshare anytime.", media: { type: "image", src: "/previews/library.png", tall: true } },
 ];
 
 function FeatureMedia({ media }) {
-  // Images: show the whole asset — no cropping. `contain` on a 4:3 stage keeps
-  // every tile the same height while displaying the full image (letterboxed on
-  // a soft teal backdrop when the aspect ratio differs).
-  // Video (the portrait reel): anchor to the top and trim the excess from the
-  // bottom, so the tile isn't dominated by letterbox bars.
-  const stage = { width: "100%", aspectRatio: "4 / 3", background: `linear-gradient(160deg, ${C.tealDeep} 0%, ${C.tealDark} 100%)`, display: "block", overflow: "hidden" };
+  // Images: show the whole asset — no cropping. `contain` keeps the full image
+  // visible (letterboxed on a soft teal backdrop when the ratio differs).
+  // Portrait assets (AI Model, the reel, Library) get a taller stage so
+  // they aren't heavily trimmed or lost in letterbox bars; the reel is
+  // top-anchored so only a little is trimmed from the bottom.
+  const stage = { width: "100%", aspectRatio: media?.tall ? "5 / 6" : "4 / 3", background: `linear-gradient(160deg, ${C.tealDeep} 0%, ${C.tealDark} 100%)`, display: "block", overflow: "hidden" };
   if (media?.type === "video") {
     return <div style={stage}><video src={media.src} autoPlay loop muted playsInline style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }} /></div>;
   }
   return <div style={stage}><img src={media.src} alt="" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} /></div>;
 }
 
-const NAV = [["Features", "features"], ["Refer & Earn", "refer"], ["How It Works", "how"], ["Pricing", "pricing"]];
+const NAV = [["Features", "features"], ["Refer & Earn", "refer"], ["How It Works", "how"], ["Pricing", "pricing"], ["FAQ", "faq"]];
+
+// ─── FAQ (marketing version — mirrors the in-app FAQ, plus login/account) ─
+const FAQ_ITEMS = [
+  { q: "How do I log in? Do I need approval?", a: "Click Login and sign in with your Google account — that's it. There is no approval step, no waiting and no card required. Your account is ready with 3 free credits the moment you sign in." },
+  { q: "What is a credit?", a: "A credit is the unit you spend to generate media. One studio image (Studio Photo, Metal Swap, AI Model or Jewellery Design) costs 1 credit. Reels cost a few credits depending on length and quality." },
+  { q: "What do my 3 free credits get me?", a: "Enough to try the suite properly: 3 studio images, or one 8-second reel. They're added automatically on your first sign-in." },
+  { q: "How much does it cost after that?", a: "₹10 per studio image and reels from ₹20, at the 100-credit pack. There's no subscription and no monthly commitment — top up only when you need to." },
+  { q: "How many credits does a reel use?", a: "It depends on length and resolution — the exact cost is shown before you submit. As a guide, an 8-second reel costs about 3 credits at SD, 6 at HD and 13 at Full HD." },
+  { q: "Do credits expire?", a: "No. Credits never expire, and one balance works across every Studio Suite feature." },
+  { q: "What happens if a generation fails? Do I lose credits?", a: "No. Images are charged only on success. Reels reserve credits at submit and automatically refund them if the render fails — you never pay for a failed generation." },
+  { q: "The result isn't what I expected — do I get a refund?", a: "Credits are consumed for every successful generation, even if the style isn't what you hoped — each run costs real AI compute. A sharper, well-lit photo on a plain background usually improves results a lot. If something looks broken rather than just off-style, contact support and we'll make it right." },
+  { q: "How does Refer & Earn work?", a: "Share your personal referral link from the Refer & Earn page inside the app. When a jeweller signs up through it and makes their first purchase, you both receive 10 free credits — with no limit on how many jewellers you can refer." },
+  { q: "Which tools are completely free?", a: "Daily Gold Rate posters, Festival Posters, the WhatsApp Catalog maker and Store Branding use no credits at all — they're free marketing tools included with your account." },
+  { q: "What photos work best?", a: "A sharp, well-lit photo of a single piece — even a phone photo on the counter. Avoid heavy blur, glare and busy backgrounds. Better input gives noticeably better output." },
+  { q: "Who owns the generated images and reels?", a: "You do. Use them freely on Instagram, WhatsApp, your website and print. Just upload only photos that are your own or that you have rights to use." },
+  { q: "Are my photos and designs private?", a: "Yes. Your uploads and generated media are stored against your account only — other jewellers can never see your pieces, designs or Library." },
+  { q: "Is this the same as the Swarnix WhatsApp Suite?", a: "Studio is the creative part of Swarnix and works on its own with a simple Google login. The full WhatsApp Suite adds a 24/7 AI sales agent, smart inventory with dynamic gold pricing, Selfie Try-On and an online website — see the section below to explore it." },
+];
+
+function FaqItem({ q, a, open, onToggle }) {
+  return (
+    <div style={{ borderBottom: `1px solid ${C.tealLine}` }}>
+      <button onClick={onToggle} aria-expanded={open} style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16, padding: "20px 6px", background: "none", border: "none", cursor: "pointer", textAlign: "left" }}>
+        <span style={{ fontFamily: serif, fontSize: 21, fontWeight: 600, color: open ? C.gold : C.cream, lineHeight: 1.3, transition: "color .2s" }}>{q}</span>
+        <span aria-hidden="true" style={{ flexShrink: 0, fontFamily: sans, fontSize: 20, color: C.gold, transform: open ? "rotate(45deg)" : "none", transition: "transform .25s" }}>+</span>
+      </button>
+      {open && <p style={{ fontFamily: sans, fontWeight: 300, color: C.creamSoft, lineHeight: 1.8, fontSize: 16, margin: "0 0 20px", padding: "0 6px", maxWidth: "62ch" }}>{a}</p>}
+    </div>
+  );
+}
 
 export default function StudioSite() {
   const [open, setOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const f = () => setScrolled(window.scrollY > 30);
@@ -414,6 +445,24 @@ export default function StudioSite() {
             </Reveal>
           </div>
           <Reveal style={{ marginTop: 26 }}><p style={{ ...body, fontSize: 15.5, textAlign: "center", maxWidth: 680, margin: "0 auto", color: C.creamMute }}>One credit = one generated image. Reels use a few credits each. Credits never expire — use them across all six tools. ₹10/image and reels from ₹20 apply at the 100-credit pack.</p></Reveal>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" style={{ padding: "56px 0", background: C.tealDeep, position: "relative" }}>
+        <div style={{ ...wrap, maxWidth: 860 }}>
+          <Reveal style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 30px" }}>
+            <Label>FAQ</Label>
+            <h2 style={{ ...h2, margin: "18px 0 14px" }}>Questions, <span style={{ fontStyle: "italic", color: C.gold }}>answered.</span></h2>
+            <p style={{ ...body, margin: 0 }}>Everything jewellers ask us about credits, refunds, referrals and the tools.</p>
+          </Reveal>
+          <Reveal>
+            <div style={{ background: `linear-gradient(165deg, ${C.tealSoft} 0%, ${C.tealDeep} 100%)`, border: `1px solid ${C.tealLine}`, borderRadius: 10, padding: "10px 26px", boxShadow: "0 20px 46px rgba(0,0,0,0.26)" }}>
+              {FAQ_ITEMS.map((item, i) => (
+                <FaqItem key={item.q} q={item.q} a={item.a} open={openFaq === i} onToggle={() => setOpenFaq(openFaq === i ? null : i)} />
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
